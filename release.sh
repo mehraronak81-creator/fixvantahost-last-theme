@@ -7,10 +7,11 @@ yarn build:production
 mkdir tmp
 cd tmp/
 
-# Clone the repo
-git clone https://github.com/Nookure/NookTheme.git
+# Clone the current VantaHost checkout so releases never depend on an
+# unrelated upstream repository or a hard-coded GitHub account.
+git clone .. VantaHost
 
-cd NookTheme
+cd VantaHost
 
 # Remove the .git folder
 rm -rf .git
@@ -19,8 +20,8 @@ rm -rf .git
 cp -r ../../public .
 
 # Create the tar and zip files
-tar -czvf ./NookTheme.tar.gz .
-zip -r ./NookTheme.zip .
+tar -czvf ./VantaHost.tar.gz .
+zip -r ./VantaHost.zip .
 
 rm -rf ../../release/*
 
@@ -28,8 +29,8 @@ rm -rf ../../release/*
 mkdir ../../release
 
 # Move the files to releases
-mv ./NookTheme.tar.gz ../../release/panel.tar.gz
-mv ./NookTheme.zip ../../release/panel.zip
+mv ./VantaHost.tar.gz ../../release/panel.tar.gz
+mv ./VantaHost.zip ../../release/panel.zip
 
 # Remove the tmp folder
 cd ../../
