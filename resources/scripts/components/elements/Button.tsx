@@ -11,15 +11,21 @@ interface Props {
 }
 
 const ButtonStyle = styled.button<Omit<Props, 'isLoading'>>`
-    ${tw`relative inline-block rounded p-2 uppercase tracking-wide text-sm transition-all duration-150 border`};
+    ${tw`relative inline-block rounded-lg p-2 uppercase tracking-wide text-sm transition-all duration-150 border`};
+    letter-spacing: 0.055em;
+    box-shadow: 0 5px 14px rgba(0, 0, 0, 0.2);
+    transform: translateZ(0);
 
     ${(props) =>
         ((!props.isSecondary && !props.color) || props.color === 'primary') &&
         css<Props>`
             ${(props) => !props.isSecondary && tw`bg-primary-500 border-primary-600 border text-primary-50`};
+            ${(props) => !props.isSecondary && css`background: var(--gradient-button, linear-gradient(135deg, #3575e8, #23c4e8)); border-color: rgba(146, 194, 255, 0.5);`};
 
             &:hover:not(:disabled) {
                 ${tw`bg-primary-600 border-primary-700`};
+                transform: translateY(-1px);
+                box-shadow: 0 10px 22px var(--color-accent-glow, rgba(79, 140, 255, 0.28));
             }
         `};
 
@@ -90,6 +96,11 @@ const ButtonStyle = styled.button<Omit<Props, 'isLoading'>>`
     &:disabled {
         opacity: 0.55;
         cursor: default;
+    }
+
+    &:active:not(:disabled) {
+        transform: translateY(1px);
+        box-shadow: none;
     }
 `;
 

@@ -2,8 +2,8 @@
     @apply flex items-center rounded-xl relative;
     @apply col-span-3 md:col-span-2 lg:col-span-6;
     @apply px-3 py-2 md:p-3 lg:p-4;
-    background: var(--card-bg, #1a1a28);
-    border: 1px solid var(--color-border, #2a2a3a);
+    background: linear-gradient(145deg, var(--glass-surface, rgba(17,24,39,.76)), rgba(12,18,32,.9));
+    border: 1px solid rgba(130, 162, 216, 0.2);
     box-shadow: var(--shadow-sm, 0 1px 3px rgba(0,0,0,0.4));
     transition: all 0.2s ease;
 
@@ -51,8 +51,8 @@
 
     & > .container {
         @apply rounded-t-xl p-1 sm:p-2 min-h-[16rem] flex-1 font-mono text-sm;
-        background: #0a0a12;
-        border: 1px solid var(--color-border, #2a2a3a);
+        background: radial-gradient(500px 220px at 80% -30%, rgba(79,140,255,.14), transparent 70%), #060914;
+        border: 1px solid rgba(130, 162, 216, 0.2);
         border-bottom: none;
 
         & #terminal {
@@ -79,7 +79,7 @@
         @apply relative px-2 pl-10 pr-4 py-3 w-full font-mono text-sm sm:rounded-b-xl;
         @apply focus:ring-0 outline-none focus-visible:outline-none;
         @apply border-0 border-b-2 border-transparent transition-all duration-200;
-        background: #0d0d16;
+        background: rgba(9, 14, 25, 0.94);
         color: var(--text-main, #e8e8f0);
         border-left: 1px solid var(--color-border, #2a2a3a);
         border-right: 1px solid var(--color-border, #2a2a3a);
@@ -98,8 +98,8 @@
 
 .chart_container {
     @apply rounded-xl pt-2 relative;
-    background: var(--card-bg, #1a1a28);
-    border: 1px solid var(--color-border, #2a2a3a);
+    background: linear-gradient(145deg, var(--glass-surface, rgba(17,24,39,.76)), rgba(12,18,32,.9));
+    border: 1px solid rgba(130, 162, 216, 0.2);
     box-shadow: var(--shadow-sm, 0 1px 3px rgba(0,0,0,0.4));
     transition: all 0.2s ease;
 

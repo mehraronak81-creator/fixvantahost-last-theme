@@ -48,7 +48,14 @@
                 }
 
                 body.skin-blue {
-                    background: var(--vh-bg) !important;
+                    background-color: var(--vh-bg) !important;
+                    background-image:
+                        radial-gradient(900px 520px at 7% -8%, rgba(94, 66, 204, .24), transparent 68%),
+                        radial-gradient(780px 500px at 98% 12%, rgba(35, 196, 232, .15), transparent 66%),
+                        radial-gradient(1px 1px at 18% 22%, rgba(255,255,255,.55), transparent 100%),
+                        radial-gradient(1px 1px at 75% 28%, rgba(195,225,255,.55), transparent 100%) !important;
+                    background-size: auto, auto, 190px 190px, 260px 260px !important;
+                    background-attachment: fixed !important;
                 }
 
                 .skin-blue .wrapper,
@@ -142,7 +149,7 @@
 
                 /* Content Area */
                 .content-wrapper {
-                    background: var(--vh-bg) !important;
+                    background: transparent !important;
                     color: var(--vh-text) !important;
                 }
 
@@ -152,18 +159,20 @@
 
                 /* Boxes / Cards */
                 .box {
-                    background: var(--vh-surface-2) !important;
-                    border: 1px solid var(--vh-border) !important;
+                    background: linear-gradient(145deg, rgba(25, 34, 53, .88), rgba(14, 20, 34, .88)) !important;
+                    border: 1px solid rgba(130, 162, 216, .2) !important;
                     border-top: none !important;
                     border-radius: 12px !important;
                     overflow: hidden;
-                    box-shadow: 0 4px 12px rgba(0,0,0,0.3) !important;
-                    transition: all 0.2s ease;
+                    box-shadow: 0 12px 30px rgba(0,0,0,0.25) !important;
+                    transition: transform .22s ease, border-color .22s ease, box-shadow .22s ease;
+                    backdrop-filter: blur(16px);
                 }
 
                 .box:hover {
                     border-color: var(--vh-accent) !important;
-                    box-shadow: 0 0 20px var(--vh-accent-glow), 0 4px 12px rgba(0,0,0,0.3) !important;
+                    box-shadow: 0 0 28px var(--vh-accent-glow), 0 18px 42px rgba(0,0,0,0.3) !important;
+                    transform: translateY(-2px);
                 }
 
                 .box-header {
@@ -253,16 +262,18 @@
                 }
 
                 .btn-primary {
-                    background: var(--vh-accent) !important;
-                    border-color: var(--vh-accent) !important;
-                    border-radius: 8px;
+                    background: linear-gradient(135deg,#3575e8 0%,#4f8cff 48%,#23c4e8 100%) !important;
+                    border-color: rgba(148, 197, 255, .55) !important;
+                    border-radius: 10px;
                     font-weight: 600;
-                    transition: all 0.2s ease;
+                    letter-spacing: .025em;
+                    transition: transform .2s ease, box-shadow .2s ease, filter .2s ease;
                 }
 
                 .btn-primary:hover {
                     filter: brightness(1.1);
-                    box-shadow: 0 4px 12px var(--vh-accent-glow);
+                    box-shadow: 0 10px 24px var(--vh-accent-glow);
+                    transform: translateY(-1px);
                 }
 
                 .btn-danger {
