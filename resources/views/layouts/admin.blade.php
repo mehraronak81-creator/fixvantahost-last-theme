@@ -764,6 +764,11 @@
                                 <i class="fa fa-life-ring"></i> <span>Recovery Centre</span>
                             </a>
                         </li>
+                        <li class="{{ ! starts_with(Route::currentRouteName(), 'admin.backup-compliance') ?: 'active' }}">
+                            <a href="{{ route('admin.backup-compliance.index') }}">
+                                <i class="fa fa-check-circle"></i> <span>Backup Compliance</span>
+                            </a>
+                        </li>
                         <li class="{{ ! starts_with(Route::currentRouteName(), 'admin.security') ?: 'active' }}">
                             <a href="{{ route('admin.security.index') }}">
                                 <i class="fa fa-shield"></i> <span>Security Centre</span>

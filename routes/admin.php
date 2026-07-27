@@ -41,6 +41,9 @@ Route::post('/recovery/{backup:uuid}/restore', [Admin\RecoveryController::class,
 /* Security Centre */
 Route::get('/security', [Admin\SecurityController::class, 'index'])->name('admin.security.index');
 
+/* Backup Compliance Centre */
+Route::get('/backup-compliance', [Admin\BackupComplianceController::class, 'index'])->name('admin.backup-compliance.index');
+
 /*
 |--------------------------------------------------------------------------
 | Bulk Actions Routes
