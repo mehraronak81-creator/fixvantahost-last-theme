@@ -1,17 +1,17 @@
 info:
   name: "VantaHost Galaxy"
-  identifier: "vantahost-galaxy"
-  description: "Premium galaxy and glass visual overlay for a Blueprint-enabled Pterodactyl Panel."
+  identifier: "vantahost"
+  description: "Premium galaxy UI with Blueprint-native recovery and security operations."
   flags: ""
-  version: "1.0.0"
+  version: "1.1.0"
   target: "beta-2026-05"
   author: "VantaBlack"
   icon: ""
   website: "https://github.com/mehraronak81-creator/fixvantahost-last-theme"
 
 admin:
-  view: ""
-  controller: ""
+  view: "admin/view.blade.php"
+  controller: "admin/controller.php"
   css: "admin.css"
   wrapper: ""
 
