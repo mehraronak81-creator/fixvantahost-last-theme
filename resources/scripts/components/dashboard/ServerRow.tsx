@@ -28,7 +28,93 @@ const IconDescription = styled.p<{ $alarm: boolean }>`
 `;
 
 const StatusIndicatorBox = styled(GreyRowBox)<{ $status: ServerPowerState | undefined }>`
-    ${tw`grid grid-cols-12 gap-4 relative`};
+    ${tw`relative no-underline overflow-hidden`};
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.8rem;
+    min-height: 14.5rem;
+    padding: 1.35rem 1.5rem 1.1rem;
+    background:
+        linear-gradient(180deg, rgba(19, 25, 47, 0.74), rgba(14, 18, 35, 0.96)),
+        radial-gradient(480px 180px at 100% 0%, rgba(79, 140, 255, 0.2), transparent 70%);
+    border: 1px solid rgba(132, 157, 220, 0.18);
+
+    &::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        opacity: 0.42;
+        background-image:
+            radial-gradient(circle at 18px 18px, rgba(35, 196, 232, 0.25) 0 2px, transparent 2.5px),
+            linear-gradient(135deg, transparent 42%, rgba(90, 112, 180, 0.1) 43%, transparent 44%);
+        background-size: 38px 38px, 100% 100%;
+    }
+
+    & > div {
+        position: relative;
+        z-index: 1;
+    }
+
+    & > div:nth-of-type(1) {
+        padding-left: 0;
+        min-height: 3.5rem;
+    }
+
+    & > div:nth-of-type(1) .icon {
+        display: none;
+    }
+
+    & > div:nth-of-type(1) p:first-of-type {
+        font-size: 1.2rem;
+        font-weight: 700;
+        letter-spacing: -0.02em;
+    }
+
+    & > div:nth-of-type(2) {
+        display: block;
+        margin-left: 0;
+    }
+
+    & > div:nth-of-type(2) > div {
+        justify-content: flex-start;
+    }
+
+    & > div:nth-of-type(3) {
+        display: flex !important;
+        justify-content: flex-start;
+        gap: 1rem;
+        margin: 0;
+        padding: 0.65rem 0 0;
+        border-top: 1px solid rgba(148, 171, 220, 0.12);
+    }
+
+    & > div:nth-of-type(3) > div {
+        margin-left: 0;
+    }
+
+    & .customer-manage-link {
+        position: relative;
+        z-index: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 2.8rem;
+        margin-top: 0.15rem;
+        border: 1px solid rgba(133, 158, 220, 0.18);
+        border-radius: 0.65rem;
+        color: var(--text-secondary);
+        background: rgba(42, 49, 88, 0.42);
+        font-size: 0.9rem;
+        font-weight: 600;
+        transition: background 150ms ease, border-color 150ms ease;
+    }
+
+    &:hover .customer-manage-link {
+        background: rgba(79, 140, 255, 0.18);
+        border-color: rgba(79, 140, 255, 0.68);
+        color: #fff;
+    }
 
     & .status-bar {
         ${tw`w-1.5 absolute right-0 z-20 rounded-full m-1 transition-all duration-300`};
@@ -217,6 +303,7 @@ export default ({ server, className, isFavorite, onToggleFavorite }: Props) => {
                 )}
             </div>
             <div className={'status-bar'} />
+            <span className='customer-manage-link'>Manage server</span>
         </StatusIndicatorBox>
     );
 };

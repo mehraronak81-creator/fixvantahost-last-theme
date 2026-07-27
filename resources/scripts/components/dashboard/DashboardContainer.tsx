@@ -14,7 +14,7 @@ import { PaginatedResult } from '@/api/http';
 import Pagination from '@/components/elements/Pagination';
 import { useLocation } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSearch, faTimes } from '@fortawesome/free-solid-svg-icons';
+import { faArrowRight, faRocket, faSearch, faShieldAlt, faTimes } from '@fortawesome/free-solid-svg-icons';
 import AnnouncementBanner from '@/components/elements/AnnouncementBanner';
 
 export default () => {
@@ -79,24 +79,26 @@ export default () => {
     return (
         <PageContentBlock className='content-dashboard' title={'Dashboard'} showFlashKey={'dashboard'}>
             <AnnouncementBanner />
+            <div className='customer-promo-banner'>
+                <div className='customer-promo-copy'>
+                    <FontAwesomeIcon icon={faRocket} />
+                    <span>Built for performance. Designed for growth.</span>
+                </div>
+                <a href={'/account'} className='customer-promo-action'>Account <FontAwesomeIcon icon={faArrowRight} /></a>
+            </div>
             {!welcomeDismissed && (
-                <div
-                    css={tw`mb-4 rounded p-4 flex items-center justify-between`}
-                    style={{ background: 'var(--gradient-accent)', color: '#fff' }}
-                >
-                    <div>
-                        <p css={tw`text-lg font-medium`}>Welcome back, {username}!</p>
-                        <p css={tw`text-sm opacity-90`}>
-                            You have {servers?.pagination.total ?? 0} server
-                            {(servers?.pagination.total ?? 0) === 1 ? '' : 's'} on your account.
-                        </p>
+                <div className='customer-welcome-grid'>
+                    <div className='customer-welcome-card'>
+                        <div>
+                            <p className='customer-welcome-title'>Welcome back, {username}</p>
+                            <p className='customer-welcome-text'>Manage every server you have access to from one place.</p>
+                        </div>
+                        <button className='customer-dismiss' aria-label='Dismiss welcome message' onClick={() => setWelcomeDismissed(true)}><FontAwesomeIcon icon={faTimes} /></button>
                     </div>
-                    <button
-                        css={tw`text-white text-sm opacity-80 hover:opacity-100`}
-                        onClick={() => setWelcomeDismissed(true)}
-                    >
-                        <FontAwesomeIcon icon={faTimes} />
-                    </button>
+                    <div className='customer-protection-card'>
+                        <FontAwesomeIcon icon={faShieldAlt} />
+                        <div><strong>VantaHost Protected</strong><span>Secure access and live server controls</span></div>
+                    </div>
                 </div>
             )}
 
@@ -160,31 +162,29 @@ export default () => {
                             );
                         }
 
+                        const cardGrid = (list: Server[], favorite = false) => (
+                            <div className='customer-server-grid'>
+                                {list.map((server) => (
+                                    <ServerRow
+                                        key={server.uuid}
+                                        server={server}
+                                        isFavorite={favorite || favoriteList.includes(server.uuid)}
+                                        onToggleFavorite={toggleFavorite}
+                                    />
+                                ))}
+                            </div>
+                        );
+
                         return (
                             <>
                                 {favs.length > 0 && (
                                     <div css={tw`mb-4`}>
-                                        <p css={tw`text-xs uppercase tracking-wide text-neutral-400 mb-2`}>Favorites</p>
-                                        {favs.map((server, index) => (
-                                            <ServerRow
-                                                key={server.uuid}
-                                                server={server}
-                                                isFavorite
-                                                onToggleFavorite={toggleFavorite}
-                                                css={index > 0 ? tw`mt-2` : undefined}
-                                            />
-                                        ))}
+                                        <p className='customer-section-title'>Pinned servers</p>
+                                        {cardGrid(favs, true)}
                                     </div>
                                 )}
-                                {others.map((server, index) => (
-                                    <ServerRow
-                                        key={server.uuid}
-                                        server={server}
-                                        isFavorite={false}
-                                        onToggleFavorite={toggleFavorite}
-                                        css={index > 0 ? tw`mt-2` : undefined}
-                                    />
-                                ))}
+                                <p className='customer-section-title'>{favs.length > 0 ? 'All servers' : 'Your servers'}</p>
+                                {cardGrid(others)}
                             </>
                         );
                     }}
@@ -195,7 +195,7 @@ export default () => {
 };
 
 const StatCard = ({ label, value }: { label: string; value: React.ReactNode }) => (
-    <div css={tw`rounded p-3`} style={{ background: 'var(--card-bg)', border: '1px solid var(--color-border)' }}>
+    <div className='customer-stat-card' css={tw`rounded p-3`} style={{ background: 'var(--card-bg)', border: '1px solid var(--color-border)' }}>
         <p css={tw`text-2xl font-medium`} style={{ color: 'var(--text-main)' }}>
             {value}
         </p>

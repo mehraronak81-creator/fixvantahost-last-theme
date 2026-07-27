@@ -529,3 +529,111 @@ textarea:focus-visible {
 [data-contrast="high"] body {
     background-image: none;
 }
+
+/* ========== CUSTOMER DASHBOARD CARDS ========== */
+.customer-sidebar-brand {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    min-height: 92px;
+    padding: 20px 18px;
+    color: #f7f9ff;
+    font-size: 1.05rem;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    border-bottom: 1px solid rgba(145, 167, 218, 0.13);
+}
+
+.customer-sidebar-mark {
+    display: inline-flex;
+    width: 42px;
+    height: 42px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    background: linear-gradient(145deg, #7654f4, #3f7fff 58%, #20cae8);
+    box-shadow: 0 0 24px rgba(91, 91, 244, 0.34);
+    font-size: 1.25rem;
+}
+
+.customer-sidebar-subnav {
+    margin: 3px 10px 0;
+    padding-top: 4px;
+    border-top: 1px solid rgba(145, 167, 218, 0.1);
+}
+
+.customer-sidebar-subnav .icon {
+    width: 30px;
+    min-width: 30px;
+    height: 30px;
+    margin-right: 9px;
+    border-radius: 8px;
+    font-size: 0.75rem;
+}
+
+.customer-sidebar-footer {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding: 17px;
+    border-top: 1px solid rgba(145, 167, 218, 0.14);
+    color: var(--text-tertiary);
+    font-size: 0.72rem;
+}
+
+.customer-sidebar-live {
+    display: inline-block;
+    width: 7px;
+    height: 7px;
+    margin-right: 6px;
+    border-radius: 50%;
+    background: var(--color-success);
+    box-shadow: 0 0 10px rgba(52, 217, 123, 0.8);
+}
+
+.customer-promo-banner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    min-height: 76px;
+    margin-bottom: 1.7rem;
+    padding: 1rem 1.3rem;
+    border: 1px solid rgba(35, 196, 232, 0.22);
+    border-left: 7px solid #23c4e8;
+    border-radius: 12px;
+    background: linear-gradient(100deg, rgba(16, 69, 86, 0.96), rgba(18, 50, 74, 0.92));
+    color: #dceafa;
+    box-shadow: 0 12px 26px rgba(0, 0, 0, 0.16);
+}
+
+.customer-promo-copy { display: flex; align-items: center; gap: 10px; font-weight: 600; }
+.customer-promo-copy svg { color: #74e5ff; }
+.customer-promo-action { padding: 9px 14px; border: 1px solid rgba(180, 224, 239, 0.4); border-radius: 999px; color: #e4f6ff; font-size: 0.86rem; font-weight: 700; text-decoration: none; }
+.customer-promo-action:hover { background: rgba(255,255,255,0.1); color: #fff; }
+
+.customer-welcome-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(245px, 0.42fr); gap: 1rem; margin-bottom: 1.15rem; }
+.customer-welcome-card, .customer-protection-card { border: 1px solid rgba(140, 158, 208, 0.16); border-radius: 14px; background: rgba(20, 25, 45, 0.82); box-shadow: var(--shadow-sm); }
+.customer-welcome-card { display: flex; align-items: center; justify-content: space-between; min-height: 106px; padding: 1.35rem 1.65rem; }
+.customer-welcome-title { margin: 0 0 4px; color: var(--text-main); font-size: 1.1rem; font-weight: 700; }
+.customer-welcome-text { margin: 0; color: var(--text-tertiary); font-size: 0.9rem; }
+.customer-dismiss { color: var(--text-tertiary); background: transparent; border: 0; cursor: pointer; }
+.customer-protection-card { display: flex; align-items: center; gap: 13px; padding: 1.25rem; background: linear-gradient(135deg, rgba(26, 76, 142, 0.88), rgba(23, 54, 105, 0.78)); }
+.customer-protection-card > svg { font-size: 1.7rem; color: #a7d7ff; }
+.customer-protection-card strong, .customer-protection-card span { display: block; }
+.customer-protection-card strong { color: #f3f8ff; font-size: 0.96rem; }.customer-protection-card span { margin-top: 3px; color: #bad0ef; font-size: 0.75rem; }
+
+.customer-stat-card { background: rgba(20, 25, 45, 0.7) !important; border-color: rgba(140, 158, 208, 0.13) !important; }
+.customer-section-title { margin: 1.35rem 0 0.65rem; color: #eef4ff; font-size: 0.94rem; font-weight: 700; }
+.customer-server-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.1rem; }
+
+@media screen and (max-width: 900px) {
+    .customer-server-grid, .customer-welcome-grid { grid-template-columns: 1fr; }
+}
+
+@media screen and (max-width: 520px) {
+    .customer-promo-banner { align-items: flex-start; flex-direction: column; }
+    .customer-welcome-card { padding: 1.15rem; }
+    .customer-promo-action { width: 100%; text-align: center; }
+}

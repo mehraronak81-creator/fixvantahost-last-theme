@@ -9,6 +9,7 @@ import Spinner from '@/components/elements/Spinner';
 import routes from '@/routers/routes';
 import Sidebar from '@/components/Sidebar';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faServer, faUser } from '@fortawesome/free-solid-svg-icons';
 import { IconProp } from '@fortawesome/fontawesome-svg-core';
 
 export default () => {
@@ -17,8 +18,21 @@ export default () => {
     return (
         <>
             <NavigationBar />
-            {location.pathname.startsWith('/account') && (
-                <Sidebar>
+            <Sidebar>
+                <div className='customer-sidebar-brand'>
+                    <span className='customer-sidebar-mark'>V</span>
+                    <span>VANTAHOST</span>
+                </div>
+                <NavLink to={'/'} exact>
+                    <div className='icon'><FontAwesomeIcon icon={faServer} /></div>
+                    Servers
+                </NavLink>
+                <NavLink to={'/account'}>
+                    <div className='icon'><FontAwesomeIcon icon={faUser} /></div>
+                    Account
+                </NavLink>
+                {location.pathname.startsWith('/account') && (
+                    <div className='customer-sidebar-subnav'>
                     {routes.account
                         .filter((route) => !!route.name)
                         .map(({ path, name, exact = false, iconProp }) => (
@@ -29,8 +43,12 @@ export default () => {
                                 {name}
                             </NavLink>
                         ))}
-                </Sidebar>
-            )}
+                    </div>
+                )}
+                <div className='customer-sidebar-footer'>
+                    <span className='customer-sidebar-live'></span> Secure client panel
+                </div>
+            </Sidebar>
 
             <TransitionRouter>
                 <React.Suspense fallback={<Spinner centered />}>

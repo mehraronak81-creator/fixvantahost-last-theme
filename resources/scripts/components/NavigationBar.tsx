@@ -76,11 +76,9 @@ export default () => {
     }, [resolvedTheme, setAppearance]);
 
     useEffect(() => {
-        if (location.pathname.startsWith('/server') || location.pathname.startsWith('/account')) {
-            setShowSidebar(true);
-            return;
-        }
-        setShowSidebar(false);
+        // The customer dashboard, account area, and server console all use the
+        // same navigation rail. Keep the mobile menu trigger available on each.
+        setShowSidebar(true);
     }, [location.pathname]);
 
     const onTriggerLogout = () => {
