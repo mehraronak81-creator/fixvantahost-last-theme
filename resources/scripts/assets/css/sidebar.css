@@ -637,3 +637,41 @@ textarea:focus-visible {
     .customer-welcome-card { padding: 1.15rem; }
     .customer-promo-action { width: 100%; text-align: center; }
 }
+
+/* ========== MOBILE CUSTOMER EXPERIENCE ========== */
+@media screen and (max-width: 1150px) {
+    .sidebar { top: 3.5rem; width: min(86vw, 320px); height: calc(100dvh - 3.5rem); padding-bottom: 62px; border-right: 1px solid rgba(127, 163, 235, 0.24); border-radius: 0 18px 18px 0; background: linear-gradient(180deg, rgba(15, 19, 39, 0.99), rgba(6, 9, 21, 0.99)); box-shadow: 20px 0 48px rgba(0, 0, 0, 0.52); }
+    .active-nav { left: 0; width: min(86vw, 320px); margin-right: 0; }
+    .customer-sidebar-brand { min-height: 78px; padding: 16px 17px; }
+    .sidebar a { min-height: 54px; padding: 10px 15px; }
+    .sidebar .icon { width: 36px; height: 36px; min-width: 36px; }
+}
+
+@media screen and (max-width: 640px) {
+    .content-container { margin-right: 12px; margin-left: 12px; }
+    .content-dashboard { max-width: none; }
+    .topbar > div { padding-right: 6px; padding-left: 6px; }
+    .topbar #logo a { padding: 0 8px; font-size: 1rem; letter-spacing: -0.02em; }
+    .topbar .vanta-brand-icon { width: 25px; height: 25px; border-radius: 8px; font-size: 0.75rem; }
+    .topbar > div > div:last-child > a, .topbar > div > div:last-child > button, .topbar > div > div:last-child > .navigation-link { min-width: 38px; padding-right: 8px !important; padding-left: 8px !important; }
+    .navbar-button { margin-left: 4px; font-size: 1.2rem; }
+    .customer-promo-banner { min-height: 0; margin-bottom: 0.9rem; padding: 0.9rem 1rem; border-left-width: 4px; border-radius: 11px; }
+    .customer-promo-copy { align-items: flex-start; font-size: 0.86rem; line-height: 1.45; }
+    .customer-promo-action { min-height: 42px; padding-top: 11px; padding-bottom: 11px; }
+    .customer-welcome-grid { gap: 0.75rem; margin-bottom: 0.8rem; }
+    .customer-welcome-card { min-height: 94px; padding: 1rem; border-radius: 12px; }
+    .customer-welcome-title { font-size: 1rem; }.customer-welcome-text { font-size: 0.8rem; line-height: 1.45; }
+    .customer-protection-card { min-height: 76px; padding: 1rem; border-radius: 12px; }
+    .customer-stat-card { min-height: 78px; padding: 0.75rem !important; }
+    .customer-stat-card p:first-child { font-size: 1.35rem; }
+    .customer-section-title { margin-top: 1rem; }
+    .customer-server-grid { gap: 0.8rem; }
+    .customer-server-grid > a { min-height: 0; padding: 1.1rem 1rem 0.9rem; border-radius: 13px; }
+    .customer-server-grid > a > div:nth-of-type(3) { gap: 0.55rem; }
+    .customer-server-grid > a .customer-manage-link { min-height: 44px; font-size: 0.9rem; }
+}
+
+@media screen and (max-width: 390px) {
+    .topbar > div > div:last-child > a:nth-of-type(1), .topbar > div > div:last-child > a:nth-of-type(2) { display: none; }
+    .customer-sidebar-brand { font-size: 0.95rem; }
+}

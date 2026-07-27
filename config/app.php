@@ -33,7 +33,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'VantaHost · built by VantaBlack'),
+    'name' => env('APP_NAME', 'VantaHost'),
 
     /*
     |--------------------------------------------------------------------------
