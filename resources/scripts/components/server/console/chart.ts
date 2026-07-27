@@ -1,4 +1,5 @@
 import {
+    CategoryScale,
     Chart as ChartJS,
     ChartData,
     ChartDataset,
@@ -7,68 +8,85 @@ import {
     LinearScale,
     LineElement,
     PointElement,
+    ScriptableContext,
+    Tooltip,
 } from 'chart.js';
 import { DeepPartial } from 'ts-essentials';
 import { useState } from 'react';
 import { deepmerge, deepmergeCustom } from 'deepmerge-ts';
-import { theme } from 'twin.macro';
-import { hexToRgba } from '@/lib/helpers';
 
-ChartJS.register(LineElement, PointElement, Filler, LinearScale);
+ChartJS.register(CategoryScale, LineElement, PointElement, Filler, LinearScale, Tooltip);
+
+const prefersReducedMotion =
+    typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const sampleTime = () =>
+    new Intl.DateTimeFormat([], { hour: '2-digit', minute: '2-digit', second: '2-digit' }).format(new Date());
 
 const options: ChartOptions<'line'> = {
     responsive: true,
-    animation: false,
+    animation: prefersReducedMotion ? false : { duration: 160, easing: 'linear' },
+    interaction: { intersect: false, mode: 'index' },
     plugins: {
         legend: { display: false },
         title: { display: false },
-        tooltip: { enabled: false },
+        tooltip: {
+            enabled: true,
+            backgroundColor: '#272a2e',
+            borderColor: '#4a4e54',
+            borderWidth: 1,
+            titleColor: '#f3f1ea',
+            bodyColor: '#c7c6c0',
+            padding: 10,
+            displayColors: true,
+            callbacks: {
+                title: (items) => items[0]?.label || 'Live sample',
+            },
+        },
     },
-    layout: {
-        padding: 0,
-    },
+    layout: { padding: { left: 2, right: 8, bottom: 4 } },
     scales: {
         x: {
-            min: 0,
-            max: 19,
-            type: 'linear',
-            grid: {
-                display: false,
-                drawBorder: false,
-            },
-            ticks: {
-                display: false,
-            },
+            type: 'category',
+            grid: { display: false, drawBorder: false },
+            ticks: { display: false },
         },
         y: {
             min: 0,
             type: 'linear',
             grid: {
                 display: true,
-                color: theme('colors.gray.700'),
+                color: 'rgba(155, 156, 153, 0.16)',
                 drawBorder: false,
             },
             ticks: {
                 display: true,
                 count: 3,
-                color: theme('colors.gray.200'),
+                color: '#9b9c99',
                 font: {
-                    family: theme('fontFamily.sans'),
-                    size: 11,
+                    family: 'ui-monospace, SFMono-Regular, Menlo, Consolas, monospace',
+                    size: 10,
                     weight: '400',
                 },
             },
         },
     },
     elements: {
-        point: {
-            radius: 0,
-        },
-        line: {
-            tension: 0.15,
-        },
+        point: { radius: 0, hitRadius: 14, hoverRadius: 3 },
+        line: { tension: 0.38, borderWidth: 2, cubicInterpolationMode: 'monotone' },
     },
 };
+
+function createChartFill(top: string, bottom = 'rgba(214, 255, 63, 0)') {
+    return (context: ScriptableContext<'line'>): string | CanvasGradient => {
+        const chart = context.chart;
+        const area = chart.chartArea;
+        if (!area) return top;
+        const gradient = chart.ctx.createLinearGradient(0, area.top, 0, area.bottom);
+        gradient.addColorStop(0, top);
+        gradient.addColorStop(1, bottom);
+        return gradient;
+    };
+}
 
 function getOptions(opts?: DeepPartial<ChartOptions<'line'>> | undefined): ChartOptions<'line'> {
     return deepmerge(options, opts || {});
@@ -80,19 +98,17 @@ function getEmptyData(label: string, sets = 1, callback?: ChartDatasetCallback |
     const next = callback || ((value) => value);
 
     return {
-        labels: Array(20)
-            .fill(0)
-            .map((_, index) => index),
+        labels: Array(20).fill(''),
         datasets: Array(sets)
             .fill(0)
             .map((_, index) =>
                 next(
                     {
-                        fill: true,
+                        fill: 'origin',
                         label,
-                        data: Array(20).fill(-5),
-                        borderColor: theme('colors.cyan.400'),
-                        backgroundColor: hexToRgba(theme('colors.cyan.700'), 0.5),
+                        data: Array(20).fill(0),
+                        borderColor: '#d6ff3f',
+                        backgroundColor: createChartFill('rgba(214, 255, 63, 0.24)'),
                     },
                     index
                 )
@@ -109,7 +125,7 @@ interface UseChartOptions {
 }
 
 function useChart(label: string, opts?: UseChartOptions) {
-    const options = getOptions(
+    const chartOptions = getOptions(
         typeof opts?.options === 'number' ? { scales: { y: { min: 0, suggestedMax: opts.options } } } : opts?.options
     );
     const [data, setData] = useState(getEmptyData(label, opts?.sets || 1, opts?.callback));
@@ -117,6 +133,7 @@ function useChart(label: string, opts?: UseChartOptions) {
     const push = (items: number | null | (number | null)[]) =>
         setData((state) =>
             merge(state, {
+                labels: (state.labels || []).slice(1).concat(sampleTime()),
                 datasets: (Array.isArray(items) ? items : [items]).map((item, index) => ({
                     ...state.datasets[index],
                     data: state.datasets[index].data
@@ -129,18 +146,19 @@ function useChart(label: string, opts?: UseChartOptions) {
     const clear = () =>
         setData((state) =>
             merge(state, {
+                labels: Array(20).fill(''),
                 datasets: state.datasets.map((value) => ({
                     ...value,
-                    data: Array(20).fill(-5),
+                    data: Array(20).fill(0),
                 })),
             })
         );
 
-    return { props: { data, options }, push, clear };
+    return { props: { data, options: chartOptions }, push, clear };
 }
 
 function useChartTickLabel(label: string, max: number, tickLabel: string, roundTo?: number) {
-    return useChart(label, {
+    return useChart(label + ' (' + tickLabel + ')', {
         sets: 1,
         options: {
             scales: {
@@ -148,7 +166,17 @@ function useChartTickLabel(label: string, max: number, tickLabel: string, roundT
                     suggestedMax: max,
                     ticks: {
                         callback(value) {
-                            return `${roundTo ? Number(value).toFixed(roundTo) : value}${tickLabel}`;
+                            return (roundTo ? Number(value).toFixed(roundTo) : value) + tickLabel;
+                        },
+                    },
+                },
+            },
+            plugins: {
+                tooltip: {
+                    callbacks: {
+                        label(context) {
+                            const value = roundTo ? Number(context.parsed.y).toFixed(roundTo) : context.parsed.y;
+                            return label + ': ' + value + tickLabel;
                         },
                     },
                 },
@@ -157,4 +185,4 @@ function useChartTickLabel(label: string, max: number, tickLabel: string, roundT
     });
 }
 
-export { useChart, useChartTickLabel, getOptions, getEmptyData };
+export { useChart, useChartTickLabel, getOptions, getEmptyData, createChartFill };

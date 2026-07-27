@@ -1,5 +1,6 @@
 import React, { ReactNode } from 'react';
 import '@/assets/css/sidebar.css';
+import '@/assets/css/operations.css';
 
 type ParentProps = {
     children: ReactNode;

@@ -3,11 +3,9 @@ import { ServerContext } from '@/state/server';
 import { SocketEvent } from '@/components/server/events';
 import useWebsocketEvent from '@/plugins/useWebsocketEvent';
 import { Line } from 'react-chartjs-2';
-import { useChart, useChartTickLabel } from '@/components/server/console/chart';
-import { hexToRgba } from '@/lib/helpers';
+import { createChartFill, useChart, useChartTickLabel } from '@/components/server/console/chart';
 import { bytesToString } from '@/lib/formatters';
 import { CloudDownloadIcon, CloudUploadIcon } from '@heroicons/react/solid';
-import { theme } from 'twin.macro';
 import ChartBlock from '@/components/server/console/ChartBlock';
 import Tooltip from '@/components/elements/tooltip/Tooltip';
 
@@ -30,13 +28,24 @@ export default () => {
                     },
                 },
             },
+            plugins: {
+                tooltip: {
+                    callbacks: {
+                        label(context) {
+                            return context.dataset.label + ': ' + bytesToString(context.parsed.y);
+                        },
+                    },
+                },
+            },
         },
         callback(opts, index) {
             return {
                 ...opts,
                 label: !index ? 'Network In' : 'Network Out',
-                borderColor: !index ? theme('colors.orange.400') : theme('colors.red.400'),
-                backgroundColor: hexToRgba(!index ? theme('colors.orange.700') : theme('colors.red.700'), 0.5),
+                borderColor: !index ? '#f4b860' : '#ff6577',
+                backgroundColor: !index
+                    ? createChartFill('rgba(244, 184, 96, 0.22)')
+                    : createChartFill('rgba(255, 101, 119, 0.2)'),
             };
         },
     });

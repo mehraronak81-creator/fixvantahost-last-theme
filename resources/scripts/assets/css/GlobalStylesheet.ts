@@ -17,7 +17,7 @@ export default createGlobalStyle`
         ${tw`font-sans`};
         background-color: var(--background-color);
         color: var(--text-main);
-        letter-spacing: 0.015em;
+        letter-spacing: 0;
         transition: background-color 0.25s ease, color 0.25s ease;
     }
 
@@ -35,8 +35,14 @@ export default createGlobalStyle`
         ${tw`m-0`};
     }
 
-    textarea, select, input, button, button:focus, button:focus-visible {
+    textarea, select, input, button {
         ${tw`outline-none`};
+    }
+
+    :where(a, button, input, select, textarea, [tabindex]):focus-visible {
+        outline: 2px solid var(--color-accent);
+        outline-offset: 3px;
+        box-shadow: 0 0 0 4px var(--color-accent-glow);
     }
 
     input[type=number]::-webkit-outer-spin-button,
@@ -75,7 +81,20 @@ export default createGlobalStyle`
 
     /* Selection */
     ::selection {
-        background: var(--color-accent-glow, rgba(108, 92, 231, 0.3));
-        color: var(--text-main);
+        background: var(--color-accent);
+        color: var(--vh-canvas, #141517);
+    }
+
+    code, kbd, samp, pre, .font-mono {
+        font-variant-ligatures: none;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        *, *::before, *::after {
+            animation-duration: 0.01ms !important;
+            animation-iteration-count: 1 !important;
+            scroll-behavior: auto !important;
+            transition-duration: 0.01ms !important;
+        }
     }
 `;

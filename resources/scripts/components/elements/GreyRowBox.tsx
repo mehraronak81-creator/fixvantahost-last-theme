@@ -3,15 +3,19 @@ import tw from 'twin.macro';
 
 export default styled.div<{ $hoverable?: boolean }>`
     ${tw`flex rounded-xl no-underline items-center p-4 transition-all duration-200 overflow-hidden`};
-    background: var(--card-bg, #1a1a28);
-    color: var(--text-main, #e8e8f0);
-    border: 1px solid var(--color-border, #2a2a3a);
+    background: var(--card-bg, #1d1f22);
+    color: var(--text-main, #f3f1ea);
+    border: 1px solid var(--color-border, #35383d);
+    border-radius: var(--vh-radius-card, 8px);
+    box-shadow: var(--vh-shadow-1);
 
-    ${(props) => props.$hoverable !== false && `
+    ${(props) =>
+        props.$hoverable !== false &&
+        `
         &:hover {
             border-color: var(--color-accent, #4f8cff);
-            box-shadow: 0 0 20px var(--color-accent-glow, rgba(108, 92, 231, 0.15));
-            transform: translateY(-1px);
+            background: var(--card-bg-hover);
+            border-color: #4a4e54;
         }
     `};
 

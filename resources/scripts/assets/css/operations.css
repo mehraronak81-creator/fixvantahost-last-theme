@@ -1,0 +1,180 @@
+/* VantaHost Graphite Operations Ledger — presentation-only overrides. */
+body {
+    background: linear-gradient(rgba(255, 255, 255, 0.012) 1px, transparent 1px), var(--background-color);
+    background-size: 100% 48px;
+}
+
+.topbar {
+    border-bottom: 1px solid var(--vh-keyline);
+    box-shadow: none !important;
+    backdrop-filter: blur(18px);
+}
+
+.topbar #logo a {
+    font-weight: 700;
+    letter-spacing: -0.035em;
+}
+
+.vanta-brand-icon {
+    color: var(--vh-canvas) !important;
+    background: var(--vh-accent) !important;
+    border-radius: var(--vh-radius-control) !important;
+    box-shadow: none !important;
+}
+
+.sidebar {
+    background: #191a1c !important;
+    border-right: 1px solid var(--vh-keyline) !important;
+    box-shadow: none !important;
+}
+
+.sidebar a {
+    position: relative;
+    border-radius: 0 var(--vh-radius-control) var(--vh-radius-control) 0 !important;
+    margin-right: var(--vh-space-3);
+}
+
+.sidebar a::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 8px;
+    bottom: 8px;
+    width: 2px;
+    background: transparent;
+}
+
+.sidebar .active {
+    color: var(--vh-ink) !important;
+    background: var(--vh-surface-raised) !important;
+    box-shadow: none !important;
+}
+
+.sidebar .active::before {
+    background: var(--vh-accent);
+}
+
+.sidebar .active > .icon,
+.sidebar a:hover > .icon {
+    color: var(--vh-accent) !important;
+    filter: none !important;
+}
+
+.content-dashboard,
+.content-container {
+    max-width: 1320px !important;
+}
+
+.customer-promo-banner {
+    background: var(--vh-surface) !important;
+    border: 1px solid var(--vh-keyline) !important;
+    border-left: 3px solid var(--vh-accent) !important;
+    border-radius: var(--vh-radius-card) !important;
+    box-shadow: var(--vh-shadow-1) !important;
+}
+
+.customer-promo-copy svg {
+    color: var(--vh-accent) !important;
+}
+
+.customer-promo-action,
+.customer-manage-link {
+    border-radius: var(--vh-radius-control) !important;
+}
+
+.customer-promo-action {
+    color: var(--vh-canvas) !important;
+    background: var(--vh-accent) !important;
+    border-color: var(--vh-accent) !important;
+}
+
+.customer-welcome-card,
+.customer-protection-card,
+.customer-stat-card {
+    background: var(--vh-surface) !important;
+    border: 1px solid var(--vh-keyline) !important;
+    border-radius: var(--vh-radius-card) !important;
+    box-shadow: var(--vh-shadow-1) !important;
+}
+
+.customer-protection-card {
+    border-top: 2px solid var(--vh-online) !important;
+}
+
+.customer-protection-card > svg {
+    color: var(--vh-online) !important;
+}
+
+.customer-protection-card strong {
+    color: var(--vh-ink) !important;
+}
+
+.customer-protection-card span {
+    color: var(--vh-ink-muted) !important;
+}
+
+.customer-stat-card {
+    position: relative;
+    overflow: hidden;
+}
+
+.customer-stat-card::after {
+    content: '';
+    position: absolute;
+    right: 12px;
+    bottom: 10px;
+    width: 22px;
+    height: 2px;
+    background: var(--vh-accent);
+}
+
+.customer-server-grid {
+    gap: var(--vh-space-4) !important;
+}
+
+.customer-section-title,
+.sidebar-section-header {
+    color: var(--vh-ink-muted) !important;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 0.72rem !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.12em !important;
+    text-transform: uppercase;
+}
+
+input,
+textarea,
+select {
+    border-radius: var(--vh-radius-control) !important;
+}
+
+.activity-ledger {
+    overflow: hidden;
+    border-radius: var(--vh-radius-card);
+    box-shadow: var(--vh-shadow-1);
+}
+
+@media screen and (max-width: 640px) {
+    .content-dashboard,
+    .content-container {
+        padding-left: 14px !important;
+        padding-right: 14px !important;
+    }
+
+    .customer-promo-banner,
+    .customer-welcome-card,
+    .customer-protection-card {
+        padding: 14px !important;
+    }
+
+    .customer-server-grid {
+        gap: 12px !important;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .sidebar,
+    .topbar {
+        backdrop-filter: none;
+    }
+}

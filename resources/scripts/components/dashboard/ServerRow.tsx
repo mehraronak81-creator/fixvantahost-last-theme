@@ -10,6 +10,7 @@ import GreyRowBox from '@/components/elements/GreyRowBox';
 import Spinner from '@/components/elements/Spinner';
 import styled from 'styled-components/macro';
 import isEqual from 'react-fast-compare';
+import RuntimeIcon from '@/components/dashboard/RuntimeIcon';
 
 // Determines if the current value is in an alarm threshold so we can show it in red rather
 // than the more faded default style.
@@ -34,21 +35,24 @@ const StatusIndicatorBox = styled(GreyRowBox)<{ $status: ServerPowerState | unde
     gap: 0.8rem;
     min-height: 14.5rem;
     padding: 1.35rem 1.5rem 1.1rem;
-    background:
-        linear-gradient(180deg, rgba(19, 25, 47, 0.74), rgba(14, 18, 35, 0.96)),
-        radial-gradient(480px 180px at 100% 0%, rgba(79, 140, 255, 0.2), transparent 70%);
-    border: 1px solid rgba(132, 157, 220, 0.18);
+    background: var(--vh-surface, #1d1f22);
+    border: 1px solid var(--vh-keyline, #35383d);
+    border-top: 2px solid var(--vh-accent, #d6ff3f);
+    border-radius: var(--vh-radius-card, 8px);
+    box-shadow: var(--vh-shadow-1);
 
     &::before {
         content: '';
         position: absolute;
         inset: 0;
         pointer-events: none;
-        opacity: 0.42;
-        background-image:
-            radial-gradient(circle at 18px 18px, rgba(35, 196, 232, 0.25) 0 2px, transparent 2.5px),
-            linear-gradient(135deg, transparent 42%, rgba(90, 112, 180, 0.1) 43%, transparent 44%);
-        background-size: 38px 38px, 100% 100%;
+        opacity: 0.18;
+        background-image: linear-gradient(
+            90deg,
+            transparent 0 74%,
+            var(--vh-keyline, #35383d) 74% 74.3%,
+            transparent 74.3%
+        );
     }
 
     & > div {
@@ -101,19 +105,19 @@ const StatusIndicatorBox = styled(GreyRowBox)<{ $status: ServerPowerState | unde
         justify-content: center;
         min-height: 2.8rem;
         margin-top: 0.15rem;
-        border: 1px solid rgba(133, 158, 220, 0.18);
-        border-radius: 0.65rem;
+        border: 1px solid var(--vh-keyline, #35383d);
+        border-radius: var(--vh-radius-control, 4px);
         color: var(--text-secondary);
-        background: rgba(42, 49, 88, 0.42);
+        background: var(--vh-surface-raised, #272a2e);
         font-size: 0.9rem;
         font-weight: 600;
         transition: background 150ms ease, border-color 150ms ease;
     }
 
     &:hover .customer-manage-link {
-        background: rgba(79, 140, 255, 0.18);
-        border-color: rgba(79, 140, 255, 0.68);
-        color: #fff;
+        background: var(--vh-accent, #d6ff3f);
+        border-color: var(--vh-accent, #d6ff3f);
+        color: var(--vh-canvas, #141517);
     }
 
     & .status-bar {
@@ -207,7 +211,7 @@ export default ({ server, className, isFavorite, onToggleFavorite }: Props) => {
                     $active={!!isFavorite}
                     title={isFavorite ? 'Remove from favorites' : 'Add to favorites'}
                     aria-label={isFavorite ? 'Remove from favorites' : 'Add to favorites'}
-                    onClick={(e) => {
+                    onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
                         e.preventDefault();
                         e.stopPropagation();
                         onToggleFavorite(server.uuid);
@@ -222,6 +226,7 @@ export default ({ server, className, isFavorite, onToggleFavorite }: Props) => {
                 </div>
                 <div>
                     <p css={tw`text-lg break-words`}>{server.name}</p>
+                    <RuntimeIcon image={server.dockerImage} />
                     {!!server.description && (
                         <p css={tw`text-sm text-neutral-300 break-words line-clamp-2`}>{server.description}</p>
                     )}

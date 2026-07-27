@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>VantaHost · built by VantaBlack — @yield('title')</title>
+        <title>VantaHost — @yield('title')</title>
         <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
         <meta name="_token" content="{{ csrf_token() }}">
 
@@ -638,6 +638,7 @@
                     color: #16a34a !important;
                 }
             </style>
+            <link rel='stylesheet' href='/themes/vantahost-admin.css'>
         @show
     </head>
     <body class="hold-transition skin-blue fixed sidebar-mini">
@@ -646,7 +647,7 @@
                 <a href="{{ route('index') }}" class="logo">
                     <span style="display:flex;align-items:center;justify-content:center;gap:8px;">
                         <span style="width:26px;height:26px;background:linear-gradient(135deg,#4f8cff,#23c4e8);border-radius:7px;display:inline-flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:13px;box-shadow:0 0 12px rgba(79,140,255,0.4);">V</span>
-                        VantaHost <small style="font-size:10px;opacity:.65;">by VantaBlack</small>
+                        VantaHost
                     </span>
                 </a>
                 <nav class="navbar navbar-static-top">
@@ -845,7 +846,7 @@
                     <strong><i class="fa fa-fw {{ $appIsGit ? 'fa-git-square' : 'fa-code-fork' }}"></i></strong> {{ $appVersion }}<br />
                     <strong><i class="fa fa-fw fa-clock-o"></i></strong> {{ round(microtime(true) - LARAVEL_START, 3) }}s
                 </div>
-                Copyright &copy; 2024 - {{ date('Y') }} <a href="#">VantaHost</a>, built by VantaBlack. Powered by Pterodactyl.
+                Copyright &copy; 2024 - {{ date('Y') }} <a href='#'>VantaHost</a>. Powered by Pterodactyl.
             </footer>
         </div>
         @section('footer-scripts')

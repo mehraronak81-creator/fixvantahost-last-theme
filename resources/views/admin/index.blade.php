@@ -27,7 +27,7 @@
             </div>
             <div class="box-body">
                 @if ($version->isLatestPanel())
-                    You are running <strong style="color:var(--vh-accent,#4f8cff);">VantaHost</strong> <code>{{ config('app.fork-version') }}</code> built by VantaBlack and based on Pterodactyl Panel version <code>{{ config('app.version') }}</code>.
+                    You are running <strong style='color:var(--vh-accent,#d6ff3f);'>VantaHost</strong> <code>{{ config('app.fork-version') }}</code>, based on Pterodactyl Panel version <code>{{ config('app.version') }}</code>.
                 @else
                     Your panel is <strong>not up-to-date!</strong> The latest version is <a href="https://github.com/Pterodactyl/Panel/releases/v{{ $version->getPanel() }}" target="_blank"><code>{{ $version->getPanel() }}</code></a> and you are currently running version <code>{{ config('app.version') }}</code>.
                 @endif

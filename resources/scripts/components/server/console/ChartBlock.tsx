@@ -8,15 +8,33 @@ interface ChartBlockProps {
     children: React.ReactNode;
 }
 
-export default ({ title, legend, children }: ChartBlockProps) => (
-    <div className={classNames(styles.chart_container, 'group')}>
-        <div className={'flex items-center justify-between px-4 py-2'}>
-            <h3 className={'font-header font-medium transition-colors duration-200'}
-                style={{ color: 'var(--text-secondary)' }}>
-                {title}
-            </h3>
-            {legend && <p className={'text-sm flex items-center'}>{legend}</p>}
-        </div>
-        <div className={'z-10 ml-2'}>{children}</div>
-    </div>
-);
+interface ChartChildProps {
+    data?: {
+        datasets?: Array<{ data?: Array<number | null> }>;
+    };
+}
+
+export default ({ title, legend, children }: ChartBlockProps) => {
+    const chartData = React.isValidElement(children) ? (children.props as ChartChildProps).data : undefined;
+    const isEmpty =
+        !!chartData?.datasets?.length &&
+        chartData.datasets.every((dataset) => dataset.data?.every((value) => value === 0 || value === null));
+
+    return (
+        <section className={classNames(styles.chart_container, 'group')} aria-label={title + ' live chart'}>
+            <header className={'flex items-center justify-between px-4 pt-3'}>
+                <div>
+                    <p className={styles.chart_eyebrow}>Live telemetry</p>
+                    <h3 className={'font-header font-semibold'} style={{ color: 'var(--text-main)' }}>
+                        {title}
+                    </h3>
+                </div>
+                {legend && <p className={'text-sm flex items-center'}>{legend}</p>}
+            </header>
+            <div className={styles.chart_plot}>
+                {children}
+                {isEmpty && <span className={styles.chart_empty}>Awaiting live samples</span>}
+            </div>
+        </section>
+    );
+};

@@ -1,5 +1,13 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faFileAlt, faFileArchive, faFileImport, faFolder } from '@fortawesome/free-solid-svg-icons';
+import {
+    faDatabase,
+    faFileAlt,
+    faFileArchive,
+    faFileCode,
+    faFileImage,
+    faFileImport,
+    faFolder,
+} from '@fortawesome/free-solid-svg-icons';
 import { encodePathSegments } from '@/helpers';
 import { differenceInHours, format, formatDistanceToNow } from 'date-fns';
 import React, { memo } from 'react';
@@ -14,6 +22,37 @@ import { usePermissions } from '@/plugins/usePermissions';
 import { join } from 'pathe';
 import { bytesToString } from '@/lib/formatters';
 import styles from './style.module.css';
+
+const codeExtensions = [
+    'js',
+    'jsx',
+    'ts',
+    'tsx',
+    'json',
+    'yml',
+    'yaml',
+    'xml',
+    'html',
+    'css',
+    'scss',
+    'php',
+    'py',
+    'java',
+    'sh',
+];
+const imageExtensions = ['png', 'jpg', 'jpeg', 'gif', 'webp', 'svg', 'ico'];
+const databaseExtensions = ['db', 'sqlite', 'sqlite3', 'sql'];
+
+const getFileIcon = (file: FileObject) => {
+    if (!file.isFile) return faFolder;
+    if (file.isSymlink) return faFileImport;
+    if (file.isArchiveType()) return faFileArchive;
+    const extension = file.name.split('.').pop()?.toLowerCase() || '';
+    if (codeExtensions.includes(extension)) return faFileCode;
+    if (imageExtensions.includes(extension)) return faFileImage;
+    if (databaseExtensions.includes(extension)) return faDatabase;
+    return faFileAlt;
+};
 
 const Clickable: React.FC<{ file: FileObject }> = memo(({ file, children }) => {
     const [canRead] = usePermissions(['file.read']);
@@ -46,13 +85,7 @@ const FileObjectRow = ({ file }: { file: FileObject }) => (
         <SelectFileCheckbox name={file.name} />
         <Clickable file={file}>
             <div css={tw`flex-none text-neutral-400 ml-6 mr-4 text-lg pl-3`}>
-                {file.isFile ? (
-                    <FontAwesomeIcon
-                        icon={file.isSymlink ? faFileImport : file.isArchiveType() ? faFileArchive : faFileAlt}
-                    />
-                ) : (
-                    <FontAwesomeIcon icon={faFolder} />
-                )}
+                <FontAwesomeIcon icon={getFileIcon(file)} />
             </div>
             <div css={tw`flex-1 truncate`}>{file.name}</div>
             {file.isFile && <div css={tw`w-1/6 text-right mr-4 hidden sm:block`}>{bytesToString(file.size)}</div>}

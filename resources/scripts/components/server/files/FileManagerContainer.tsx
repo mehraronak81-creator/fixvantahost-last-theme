@@ -94,6 +94,12 @@ export default () => {
                     ) : (
                         <CSSTransition classNames={'fade'} timeout={150} appear in>
                             <div>
+                                <div className={style.file_header}>
+                                    <span>Name</span>
+                                    <span>Size</span>
+                                    <span>Modified</span>
+                                    <span>Actions</span>
+                                </div>
                                 {files.length > 250 && (
                                     <div css={tw`rounded bg-yellow-400 mb-px p-3`}>
                                         <p css={tw`text-yellow-900 text-sm text-center`}>
