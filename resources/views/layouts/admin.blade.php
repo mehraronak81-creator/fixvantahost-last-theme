@@ -774,6 +774,11 @@
                                 <i class="fa fa-shield"></i> <span>Security Centre</span>
                             </a>
                         </li>
+                        <li class="{{ ! starts_with(Route::currentRouteName(), 'admin.status-widget') ?: 'active' }}">
+                            <a href="{{ route('admin.status-widget.index') }}">
+                                <i class="fa fa-signal"></i> <span>Server Status Widget</span>
+                            </a>
+                        </li>
                         <li class="{{ ! starts_with(Route::currentRouteName(), 'admin.maintenance') ?: 'active' }}">
                             <a href="{{ route('admin.maintenance') }}">
                                 <i class="fa fa-wrench"></i> <span>Maintenance</span>

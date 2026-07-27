@@ -37,6 +37,11 @@ class RouteServiceProvider extends ServiceProvider
 
         $this->routes(function () {
             Route::middleware('web')->group(function () {
+                // Status Widget client management must be registered before the
+                // SPA fallback in routes/base.php.
+                Route::middleware(['auth.session', RequireTwoFactorAuthentication::class])
+                    ->group(base_path('routes/status-widget-client.php'));
+
                 Route::middleware(['auth.session', RequireTwoFactorAuthentication::class])
                     ->group(base_path('routes/base.php'));
 
@@ -58,6 +63,10 @@ class RouteServiceProvider extends ServiceProvider
                     ->scopeBindings()
                     ->group(base_path('routes/api-client.php'));
             });
+
+            // The embeddable status endpoint is deliberately unauthenticated,
+            // but has its own CORS policy and request throttle in its route file.
+            Route::middleware('api')->group(base_path('routes/status-widget-public.php'));
 
             Route::middleware('daemon')
                 ->prefix('/api/remote')

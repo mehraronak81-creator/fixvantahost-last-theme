@@ -75,6 +75,9 @@ Route::group(['prefix' => 'maintenance'], function () {
     Route::post('/disable-all', [Admin\MaintenanceController::class, 'disableAll'])->name('admin.maintenance.disable-all');
 });
 
+/* Server Status Widget routes inherit this Panel's admin authentication group. */
+require base_path('routes/status-widget-admin.php');
+
 /*
 |--------------------------------------------------------------------------
 | Location Controller Routes
