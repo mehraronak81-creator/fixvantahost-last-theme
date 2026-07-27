@@ -79,7 +79,7 @@ export default () => {
                             <NewDirectoryButton />
                             <UploadButton />
                             <NavLink to={`/server/${id}/files/new${window.location.hash}`}>
-                                <Button>New File</Button>
+                                <Button.Text>New File</Button.Text>
                             </NavLink>
                         </div>
                     </Can>

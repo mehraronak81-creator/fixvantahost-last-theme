@@ -146,9 +146,12 @@ export default ({ className }: WithClassname) => {
                 }}
                 multiple
             />
-            <Button className={className} onClick={() => fileUploadInput.current && fileUploadInput.current.click()}>
+            <Button.Text
+                className={className}
+                onClick={() => fileUploadInput.current && fileUploadInput.current.click()}
+            >
                 Upload
-            </Button>
+            </Button.Text>
         </>
     );
 };

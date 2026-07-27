@@ -30,7 +30,7 @@
         </div>
         <div class="col-md-3 col-sm-6">
             <div class="box" style="padding:18px;text-align:center;">
-                <i class="fa fa-folder-open" style="font-size:22px;color:#23c4e8;"></i>
+                <i class="fa fa-folder-open" style="font-size:22px;color:223c4e8;"></i>
                 <h3 style="margin:8px 0 3px;color:var(--vh-text);">{{ $fileMutationLimit }}/min</h3>
                 <small style="color:var(--vh-text-secondary);">Per-server file changes</small>
             </div>

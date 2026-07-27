@@ -79,11 +79,11 @@
                                         default => 'fa-circle-o',
                                     };
                                     $eventColor = match($eventParts[0] ?? '') {
-                                        'auth' => '#4f8cff',
-                                        'server' => '#2ed573',
-                                        'user' => '#3742fa',
-                                        'backup' => '#ffa502',
-                                        'file' => '#23c4e8',
+                                        'auth' => '#5B6570',
+                                        'server' => '#3ECF8E',
+                                        'user' => '#5B6570',
+                                        'backup' => '#E8A33D',
+                                        'file' => '#5B6570',
                                         default => 'var(--vh-text-muted)',
                                     };
                                 @endphp

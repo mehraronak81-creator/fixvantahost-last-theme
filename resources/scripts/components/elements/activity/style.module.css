@@ -17,24 +17,12 @@
 .entry {
     position: relative;
     margin-top: -1px;
-    background: var(--vh-surface, #1d1f22);
-    border: 1px solid var(--vh-keyline, #35383d);
-    transition: background-color 0.12s ease;
+    background: var(--vh-surface, #14171b);
+    border: 1px solid var(--vh-border, #262b31);
+    transition: background-color 120ms ease;
 
     &:hover {
         z-index: 1;
-        background: var(--vh-surface-raised, #272a2e);
-        border-color: #4a4e54;
-    }
-
-    &::before {
-        content: '';
-        position: absolute;
-        left: 0;
-        top: 12px;
-        bottom: 12px;
-        width: 2px;
-        background: var(--vh-accent, #d6ff3f);
-        opacity: 0.45;
+        background: var(--vh-elevated, #1b1f24);
     }
 }

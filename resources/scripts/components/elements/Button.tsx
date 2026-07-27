@@ -1,7 +1,7 @@
 import React from 'react';
-import styled, { css } from 'styled-components/macro';
-import tw from 'twin.macro';
+import classNames from 'classnames';
 import Spinner from '@/components/elements/Spinner';
+import styles from '@/components/elements/button/style.module.css';
 
 interface Props {
     isLoading?: boolean;
@@ -10,122 +10,44 @@ interface Props {
     isSecondary?: boolean;
 }
 
-const ButtonStyle = styled.button<Omit<Props, 'isLoading'>>`
-    ${tw`relative inline-block rounded-lg p-2 uppercase tracking-wide text-sm transition-all duration-150 border`};
-    letter-spacing: 0.035em;
-    border-radius: var(--vh-radius-control, 4px);
-    box-shadow: var(--vh-shadow-1);
-    transform: translateZ(0);
+const roleClass = ({ color, isSecondary }: Props) =>
+    color === 'red' ? styles.danger : isSecondary || color === 'grey' ? styles.text : styles.primary;
 
-    ${(props) =>
-        ((!props.isSecondary && !props.color) || props.color === 'primary') &&
-        css<Props>`
-            ${(props) => !props.isSecondary && tw`bg-primary-500 border-primary-600 border text-primary-50`};
-            ${(props) =>
-                !props.isSecondary &&
-                css`
-                    background: var(--gradient-button, linear-gradient(135deg, #3575e8, #23c4e8));
-                    border-color: rgba(146, 194, 255, 0.5);
-                `};
+const sizeClass = ({ size }: Props) =>
+    size === 'xsmall' || size === 'small' ? styles.small : size === 'large' || size === 'xlarge' ? styles.large : null;
 
-            &:hover:not(:disabled) {
-                ${tw`bg-primary-600 border-primary-700`};
-                transform: translateY(-1px);
-                box-shadow: var(--vh-shadow-1);
-            }
-        `};
+type ComponentProps = Omit<JSX.IntrinsicElements['button'], 'ref' | 'color'> & Props;
 
-    ${(props) =>
-        props.color === 'grey' &&
-        css`
-            ${tw`border-neutral-600 bg-neutral-500 text-neutral-50`};
-
-            &:hover:not(:disabled) {
-                ${tw`bg-neutral-600 border-neutral-700`};
-            }
-        `};
-
-    ${(props) =>
-        props.color === 'green' &&
-        css<Props>`
-            ${tw`border-green-600 bg-green-500 text-green-50`};
-
-            &:hover:not(:disabled) {
-                ${tw`bg-green-600 border-green-700`};
-            }
-
-            ${(props) =>
-                props.isSecondary &&
-                css`
-                    &:active:not(:disabled) {
-                        ${tw`bg-green-600 border-green-700`};
-                    }
-                `};
-        `};
-
-    ${(props) =>
-        props.color === 'red' &&
-        css<Props>`
-            ${tw`border-red-600 bg-red-500 text-red-50`};
-
-            &:hover:not(:disabled) {
-                ${tw`bg-red-600 border-red-700`};
-            }
-
-            ${(props) =>
-                props.isSecondary &&
-                css`
-                    &:active:not(:disabled) {
-                        ${tw`bg-red-600 border-red-700`};
-                    }
-                `};
-        `};
-
-    ${(props) => props.size === 'xsmall' && tw`px-2 py-1 text-xs`};
-    ${(props) => (!props.size || props.size === 'small') && tw`px-4 py-2`};
-    ${(props) => props.size === 'large' && tw`p-4 text-sm`};
-    ${(props) => props.size === 'xlarge' && tw`p-4 w-full`};
-
-    ${(props) =>
-        props.isSecondary &&
-        css<Props>`
-            ${tw`border-neutral-600 bg-transparent text-neutral-200`};
-
-            &:hover:not(:disabled) {
-                ${tw`border-neutral-500 text-neutral-100`};
-                ${(props) => props.color === 'red' && tw`bg-red-500 border-red-600 text-red-50`};
-                ${(props) => props.color === 'primary' && tw`bg-primary-500 border-primary-600 text-primary-50`};
-                ${(props) => props.color === 'green' && tw`bg-green-500 border-green-600 text-green-50`};
-            }
-        `};
-
-    &:disabled {
-        opacity: 0.55;
-        cursor: default;
-    }
-
-    &:active:not(:disabled) {
-        transform: translateY(1px);
-        box-shadow: none;
-    }
-`;
-
-type ComponentProps = Omit<JSX.IntrinsicElements['button'], 'ref' | keyof Props> & Props;
+const ButtonStyle: React.FC<ComponentProps> = ({ children, className, color, isSecondary, size, ...props }) => (
+    <button
+        className={classNames(styles.button, roleClass({ color, isSecondary }), sizeClass({ size }), className)}
+        {...props}
+    >
+        {children}
+    </button>
+);
 
 const Button: React.FC<ComponentProps> = ({ children, isLoading, ...props }) => (
     <ButtonStyle {...props}>
         {isLoading && (
-            <div css={tw`flex absolute justify-center items-center w-full h-full left-0 top-0`}>
+            <span className={'absolute inset-0 flex items-center justify-center'}>
                 <Spinner size={'small'} />
-            </div>
+            </span>
         )}
-        <span css={isLoading ? tw`text-transparent` : undefined}>{children}</span>
+        <span className={isLoading ? 'text-transparent' : undefined}>{children}</span>
     </ButtonStyle>
 );
 
-type LinkProps = Omit<JSX.IntrinsicElements['a'], 'ref' | keyof Props> & Props;
+type LinkProps = Omit<JSX.IntrinsicElements['a'], 'ref' | 'color'> & Props;
 
-const LinkButton: React.FC<LinkProps> = (props) => <ButtonStyle as={'a'} {...props} />;
+const LinkButton: React.FC<LinkProps> = ({ children, className, color, isSecondary, size, ...props }) => (
+    <a
+        className={classNames(styles.button, roleClass({ color, isSecondary }), sizeClass({ size }), className)}
+        {...props}
+    >
+        {children}
+    </a>
+);
 
 export { LinkButton, ButtonStyle };
 export default Button;

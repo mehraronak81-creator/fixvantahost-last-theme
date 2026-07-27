@@ -98,7 +98,7 @@ const EditorContainer = styled.div`
     }
 
     .CodeMirror-foldmarker {
-        color: #cbccc6;
+        color: #e7e9ec;
         text-shadow: none;
         margin-left: 0.25rem;
         margin-right: 0.25rem;

@@ -156,7 +156,7 @@
             text: 'This server will be permanently destroyed. This cannot be undone!',
             type: 'warning',
             showCancelButton: true,
-            confirmButtonColor: '#d9534f',
+            confirmButtonColor: '#F0575D',
             confirmButtonText: 'Yes, delete permanently!',
             closeOnConfirm: false
         }, function() {
@@ -171,7 +171,7 @@
             text: 'ALL suspended servers will be permanently destroyed. This cannot be undone!',
             type: 'warning',
             showCancelButton: true,
-            confirmButtonColor: '#d9534f',
+            confirmButtonColor: '#F0575D',
             confirmButtonText: 'Yes, empty trash!',
             closeOnConfirm: false
         }, function() {

@@ -35,22 +35,21 @@ const StatusIndicatorBox = styled(GreyRowBox)<{ $status: ServerPowerState | unde
     gap: 0.8rem;
     min-height: 14.5rem;
     padding: 1.35rem 1.5rem 1.1rem;
-    background: var(--vh-surface, #1d1f22);
-    border: 1px solid var(--vh-keyline, #35383d);
-    border-top: 2px solid var(--vh-accent, #d6ff3f);
-    border-radius: var(--vh-radius-card, 8px);
-    box-shadow: var(--vh-shadow-1);
+    background: var(--vh-surface, #14171b);
+    border: 1px solid var(--vh-border, #262b31);
+    border-radius: var(--vh-radius-card, 10px);
+    box-shadow: var(--vh-shadow);
 
     &::before {
         content: '';
         position: absolute;
         inset: 0;
         pointer-events: none;
-        opacity: 0.18;
+        opacity: 1;
         background-image: linear-gradient(
             90deg,
             transparent 0 74%,
-            var(--vh-keyline, #35383d) 74% 74.3%,
+            var(--vh-border, #262b31) 74% 74.3%,
             transparent 74.3%
         );
     }
@@ -90,7 +89,7 @@ const StatusIndicatorBox = styled(GreyRowBox)<{ $status: ServerPowerState | unde
         gap: 1rem;
         margin: 0;
         padding: 0.65rem 0 0;
-        border-top: 1px solid rgba(148, 171, 220, 0.12);
+        border-top: 1px solid var(--vh-border, #262b31);
     }
 
     & > div:nth-of-type(3) > div {
@@ -105,52 +104,49 @@ const StatusIndicatorBox = styled(GreyRowBox)<{ $status: ServerPowerState | unde
         justify-content: center;
         min-height: 2.8rem;
         margin-top: 0.15rem;
-        border: 1px solid var(--vh-keyline, #35383d);
-        border-radius: var(--vh-radius-control, 4px);
+        border: 1px solid var(--vh-border, #262b31);
+        border-radius: var(--vh-radius-control, 6px);
         color: var(--text-secondary);
-        background: var(--vh-surface-raised, #272a2e);
+        background: var(--vh-elevated, #1b1f24);
         font-size: 0.9rem;
         font-weight: 600;
         transition: background 150ms ease, border-color 150ms ease;
     }
 
     &:hover .customer-manage-link {
-        background: var(--vh-accent, #d6ff3f);
-        border-color: var(--vh-accent, #d6ff3f);
-        color: var(--vh-canvas, #141517);
+        background: var(--vh-elevated, #1b1f24);
+        border-color: var(--vh-border, #262b31);
+        color: var(--vh-text, #e7e9ec);
     }
 
     & .status-bar {
         ${tw`w-1.5 absolute right-0 z-20 rounded-full m-1 transition-all duration-300`};
-        height: calc(100% - 0.5rem);
-        opacity: 0.7;
+        top: 12px;
+        right: 12px;
+        width: 8px;
+        height: 8px;
+        margin: 0;
+        opacity: 1;
 
         ${({ $status }) =>
             !$status || $status === 'offline'
-                ? tw`bg-red-500`
+                ? 'background: #5b6570;'
                 : $status === 'running'
-                ? tw`bg-green-500`
-                : tw`bg-yellow-500`};
-
-        ${({ $status }) =>
-            $status === 'running'
-                ? `box-shadow: 0 0 8px rgba(46, 213, 115, 0.5);`
-                : $status === 'offline'
-                ? `box-shadow: 0 0 8px rgba(255, 71, 87, 0.3);`
-                : `box-shadow: 0 0 8px rgba(255, 165, 2, 0.3);`};
+                ? 'background: #3ecf8e;'
+                : 'background: #e8a33d;'};
     }
 
-    &:hover .status-bar {
-        opacity: 1;
+    & .status-bar {
+        box-shadow: none !important;
     }
 `;
 
 const FavoriteButton = styled.button<{ $active: boolean }>`
     ${tw`absolute left-1 top-1 z-30 flex items-center justify-center w-7 h-7 rounded-full transition-colors duration-150`};
-    ${(props) => (props.$active ? tw`text-yellow-400` : tw`text-neutral-600`)};
+    ${(props) => (props.$active ? 'color: #e7e9ec;' : 'color: #8a93a0;')};
 
     &:hover {
-        ${tw`text-yellow-400`};
+        color: #e7e9ec;
         background: var(--color-surface-hover);
     }
 `;
@@ -225,8 +221,10 @@ export default ({ server, className, isFavorite, onToggleFavorite }: Props) => {
                     <FontAwesomeIcon icon={faServer} />
                 </div>
                 <div>
-                    <p css={tw`text-lg break-words`}>{server.name}</p>
-                    <RuntimeIcon image={server.dockerImage} />
+                    <div className={'flex items-center gap-2'}>
+                        <RuntimeIcon image={server.dockerImage} />
+                        <p css={tw`text-lg break-words`}>{server.name}</p>
+                    </div>
                     {!!server.description && (
                         <p css={tw`text-sm text-neutral-300 break-words line-clamp-2`}>{server.description}</p>
                     )}

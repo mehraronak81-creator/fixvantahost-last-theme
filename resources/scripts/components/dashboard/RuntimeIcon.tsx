@@ -22,9 +22,15 @@ export default ({ image }: { image: string }) => {
     };
 
     return (
-        <span className={styles.badge} title={'Runtime: ' + runtime.label}>
-            <img src={runtime.icon} alt='' aria-hidden={'true'} />
-            <span>{runtime.label}</span>
+        <span className={styles.icon} title={'Runtime: ' + runtime.label} aria-label={'Runtime: ' + runtime.label}>
+            <span
+                className={styles.mark}
+                style={{
+                    maskImage: 'url(' + runtime.icon + ')',
+                    WebkitMaskImage: 'url(' + runtime.icon + ')',
+                }}
+                aria-hidden={'true'}
+            />
         </span>
     );
 };

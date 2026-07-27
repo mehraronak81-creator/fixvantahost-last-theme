@@ -27,10 +27,9 @@ const RightNavigation = styled.div`
             background: var(--color-surface-hover);
         }
 
-        &:active,
-        &:hover,
         &.active {
-            box-shadow: inset 0 -2px var(--color-accent);
+            color: var(--text-main);
+            box-shadow: inset 0 -1px var(--color-border);
         }
     }
 `;
@@ -142,7 +141,7 @@ export default () => {
                                 <span
                                     css={tw`absolute -top-1 -right-1 text-white text-xs rounded-full flex items-center justify-center`}
                                     style={{
-                                        background: '#ef4444',
+                                        background: '#f0575d',
                                         minWidth: '16px',
                                         height: '16px',
                                         padding: '0 4px',

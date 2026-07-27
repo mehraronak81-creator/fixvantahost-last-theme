@@ -13,14 +13,15 @@ function mbToBytes(megabytes: number): number {
  */
 function bytesToString(bytes: number, decimals = 2): string {
     const k = _CONVERSION_UNIT;
+    const units = ['B', 'KiB', 'MiB', 'GiB', 'TiB'];
 
-    if (bytes < 1) return '0 Bytes';
+    if (!Number.isFinite(bytes) || bytes < 1) return '0 B';
 
     decimals = Math.floor(Math.max(0, decimals));
-    const i = Math.floor(Math.log(bytes) / Math.log(k));
+    const i = Math.min(Math.floor(Math.log(bytes) / Math.log(k)), units.length - 1);
     const value = Number((bytes / Math.pow(k, i)).toFixed(decimals));
 
-    return `${value} ${['Bytes', 'KiB', 'MiB', 'GiB', 'TiB'][i]}`;
+    return value + ' ' + units[i];
 }
 
 /**

@@ -1,48 +1,54 @@
-# VantaHost interface system
+# VantaHost locked interface system
 
-## Direction
+## Palette
 
-VantaHost uses a **Graphite Operations Ledger** visual language: dense enough for
-infrastructure work, calm enough for long sessions, and recognisable through a
-thin chartreuse telemetry rail. The previous navy/cyan galaxy gradients, large
-glows, and interchangeable rounded cards were removed because they looked like a
-generic gaming dashboard rather than a dependable hosting control surface.
+| Role                 | Value   |
+| -------------------- | ------- |
+| Background           | #0B0D10 |
+| Surface              | #14171B |
+| Elevated / hover     | #1B1F24 |
+| Border / divider     | #262B31 |
+| Primary text         | #E7E9EC |
+| Muted text           | #8A93A0 |
+| Accent               | #4F7CFF |
+| Online / success     | #3ECF8E |
+| Warning / installing | #E8A33D |
+| Offline / neutral    | #5B6570 |
+| Error / suspended    | #F0575D |
 
-## Core tokens
+Cards and panels always use a one-pixel #262B31 border. They never use a
+colored edge, rainbow border, accent glow, or accent shadow.
 
-| Role | Token | Value |
-| --- | --- | --- |
-| Canvas | \`--vh-canvas\` | \`#141517\` |
-| Surface | \`--vh-surface\` | \`#1d1f22\` |
-| Raised surface | \`--vh-surface-raised\` | \`#272a2e\` |
-| Chalk text | \`--vh-ink\` | \`#f3f1ea\` |
-| Muted text | \`--vh-ink-muted\` | \`#9b9c99\` |
-| Action accent | \`--vh-accent\` | \`#d6ff3f\` |
+## Accent constraints
 
-Semantic status colors are separate from the brand palette:
-\`--vh-online\`, \`--vh-warning\`, and \`--vh-danger\`.
+The blue accent is limited to:
 
-## Type, spacing, and elevation
+1. Primary button backgrounds.
+2. The active sidebar indicator.
+3. Keyboard/input focus rings.
+4. Active chart data and its area fill.
 
-- UI and display: IBM Plex Sans, 400–700.
-- Technical values, paths, addresses, and timestamps: system monospace.
-- Spacing: 4px base rhythm (\`4, 8, 12, 16, 24, 32\`).
-- Corners: 4px controls, 8px cards, 12px large shells.
-- Elevation: surface-tone layering, a one-pixel keyline, and shallow shadows.
-  No neon glow is used to fake hierarchy.
+## Button roles
 
-## Signature element
+-   Primary: blue background and primary text. One leading action per screen.
+-   Secondary: elevated neutral background with a one-pixel neutral border.
+-   Destructive: error background, reserved for destructive operations.
 
-The telemetry rail is a 2–3px chartreuse rule used for active navigation,
-focused controls, and live-data cards. It connects navigation, server identity,
-tables, terminal controls, and charts without adding decorative noise.
+## Runtime identity
 
-## Component rules
+Runtime identity uses local Simple Icons SVG paths as 18px monochrome icons
+directly beside the server name. There is no label, pill, or colored backdrop.
 
-- Primary actions are chartreuse with graphite text.
-- Secondary actions use a raised surface and visible keyline.
-- Destructive actions are red only at the point of risk.
-- Status is always communicated with text as well as color.
-- Tables use stable columns, monospace metadata, and row-level hover contrast.
-- Reduced-motion mode removes transforms and nonessential animation.
-- Focus-visible rings must remain obvious on every interactive control.
+## Charts
+
+Charts use smoothed lines, a blue-to-transparent area fill, timestamped hover
+tooltips, exact unit formatting, and a flat zero baseline with a quiet empty
+label. Network outbound data uses muted gray so the blue chart signal remains
+the only accent.
+
+## Accessibility
+
+-   IBM Plex Sans is the UI typeface; technical values use system monospace.
+-   Focus-visible uses the locked blue focus ring.
+-   Status always includes text in addition to semantic color.
+-   Reduced-motion preference disables nonessential animation.

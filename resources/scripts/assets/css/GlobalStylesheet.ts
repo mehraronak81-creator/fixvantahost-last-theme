@@ -42,7 +42,7 @@ export default createGlobalStyle`
     :where(a, button, input, select, textarea, [tabindex]):focus-visible {
         outline: 2px solid var(--color-accent);
         outline-offset: 3px;
-        box-shadow: 0 0 0 4px var(--color-accent-glow);
+        box-shadow: none;
     }
 
     input[type=number]::-webkit-outer-spin-button,
@@ -63,12 +63,12 @@ export default createGlobalStyle`
     }
 
     ::-webkit-scrollbar-thumb {
-        background: var(--scrollbar-thumb, #2a2a40);
+        background: var(--scrollbar-thumb, #5b6570);
         border-radius: 4px;
     }
 
     ::-webkit-scrollbar-thumb:hover {
-        background: var(--color-accent, #4f8cff);
+        background: var(--scrollbar-thumb, #5b6570);
     }
 
     ::-webkit-scrollbar-track-piece {
@@ -81,8 +81,8 @@ export default createGlobalStyle`
 
     /* Selection */
     ::selection {
-        background: var(--color-accent);
-        color: var(--vh-canvas, #141517);
+        background: var(--color-surface-hover);
+        color: var(--text-main);
     }
 
     code, kbd, samp, pre, .font-mono {

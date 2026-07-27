@@ -16,7 +16,7 @@ export interface AppearanceSettings {
 
 export const DEFAULT_APPEARANCE: AppearanceSettings = {
     theme: 'dark',
-    accent: '#4f8cff',
+    accent: '#4f7cff',
     fontScale: 'md',
     density: 'comfortable',
     sidebarStyle: 'expanded',
@@ -24,16 +24,7 @@ export const DEFAULT_APPEARANCE: AppearanceSettings = {
 };
 
 // Preset accent swatches surfaced on the Appearance page.
-export const ACCENT_PRESETS: string[] = [
-    '#4f8cff', // Vanta blue (default)
-    '#23c4e8', // arctic cyan
-    '#7b61ff', // royal violet
-    '#34d97b', // green
-    '#ffb020', // amber
-    '#ff5c6c', // red
-    '#e84393', // pink
-    '#576574', // slate
-];
+export const ACCENT_PRESETS: string[] = ['#4f7cff'];
 
 const STORAGE_KEY = 'vantahost:appearance';
 // The theme toggle historically persisted only to this key; keep it in sync

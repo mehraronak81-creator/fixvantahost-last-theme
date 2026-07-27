@@ -42,7 +42,7 @@
     </div>
     <div class="col-lg-2 col-sm-4 col-xs-6">
         <div class="box" style="text-align:center;padding:15px 10px;">
-            <h3 style="margin:0;color:#ff6348;">{{ $failedServers }}</h3>
+            <h3 style="margin:0;color:#F0575D;">{{ $failedServers }}</h3>
             <small style="color:var(--vh-text-secondary);">Failed</small>
         </div>
     </div>
@@ -64,10 +64,10 @@
             <div class="box-body">
                 @php
                     $memPct = $totalMemory > 0 ? round(($allocatedMemory / $totalMemory) * 100, 1) : 0;
-                    $memColor = $memPct > 90 ? '#ff4757' : ($memPct > 70 ? '#ffa502' : '#4f8cff');
+                    $memColor = $memPct > 90 ? '#F0575D' : ($memPct > 70 ? '#E8A33D' : '#5B6570');
                 @endphp
                 <div style="background:var(--vh-surface);border-radius:8px;overflow:hidden;height:32px;margin-bottom:10px;">
-                    <div style="height:100%;background:{{ $memColor }};border-radius:8px;width:{{ $memPct }}%;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:600;font-size:13px;transition:width 0.6s ease;">
+                    <div style="height:100%;background:{{ $memColor }};border-radius:8px;width:{{ $memPct }}%;display:flex;align-items:center;justify-content:center;color:#E7E9EC;font-weight:600;font-size:13px;transition:width 0.6s ease;">
                         {{ $memPct }}%
                     </div>
                 </div>
@@ -88,10 +88,10 @@
             <div class="box-body">
                 @php
                     $diskPct = $totalDisk > 0 ? round(($allocatedDisk / $totalDisk) * 100, 1) : 0;
-                    $diskColor = $diskPct > 90 ? '#ff4757' : ($diskPct > 70 ? '#ffa502' : '#2ed573');
+                    $diskColor = $diskPct > 90 ? '#F0575D' : ($diskPct > 70 ? '#E8A33D' : '#5B6570');
                 @endphp
                 <div style="background:var(--vh-surface);border-radius:8px;overflow:hidden;height:32px;margin-bottom:10px;">
-                    <div style="height:100%;background:{{ $diskColor }};border-radius:8px;width:{{ $diskPct }}%;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:600;font-size:13px;transition:width 0.6s ease;">
+                    <div style="height:100%;background:{{ $diskColor }};border-radius:8px;width:{{ $diskPct }}%;display:flex;align-items:center;justify-content:center;color:#E7E9EC;font-weight:600;font-size:13px;transition:width 0.6s ease;">
                         {{ $diskPct }}%
                     </div>
                 </div>
@@ -162,7 +162,7 @@
                                         <strong style="font-size:15px;color:var(--vh-text);">{{ $node['name'] }}</strong>
                                         <div style="font-size:11px;color:var(--vh-text-muted);margin-top:2px;">{{ $node['fqdn'] }}</div>
                                     </div>
-                                    <span class="node-live-badge" id="health-badge-{{ $node['id'] }}" style="padding:4px 10px;border-radius:6px;font-size:11px;font-weight:600;background:rgba(108,92,231,0.2);color:var(--vh-accent);">
+                                    <span class="node-live-badge" id="health-badge-{{ $node['id'] }}" style="padding:4px 10px;border-radius:6px;font-size:11px;font-weight:600;background:rgba(91,101,112,0.2);color:var(--vh-accent);">
                                         <i class="fa fa-spinner fa-spin"></i> Checking
                                     </span>
                                 </div>
@@ -178,7 +178,7 @@
                                 </div>
 
                                 @if($node['maintenance_mode'])
-                                <div style="background:rgba(255,165,2,0.1);border:1px solid rgba(255,165,2,0.3);border-radius:8px;padding:8px 12px;margin-bottom:12px;font-size:12px;color:#ffa502;">
+                                <div style="background:rgba(232,163,61,0.1);border:1px solid rgba(232,163,61,0.3);border-radius:8px;padding:8px 12px;margin-bottom:12px;font-size:12px;color:#E8A33D;">
                                     <i class="fa fa-wrench"></i> This node is in maintenance mode
                                 </div>
                                 @endif
@@ -191,7 +191,7 @@
                                     </div>
                                     <div style="background:var(--vh-surface-2);border-radius:6px;overflow:hidden;height:10px;">
                                         @php
-                                            $mColor = $node['memory_percent'] > 90 ? '#ff4757' : ($node['memory_percent'] > 70 ? '#ffa502' : '#4f8cff');
+                                            $mColor = $node['memory_percent'] > 90 ? '#F0575D' : ($node['memory_percent'] > 70 ? '#E8A33D' : '#5B6570');
                                         @endphp
                                         <div style="height:100%;border-radius:6px;width:{{ $node['memory_percent'] }}%;background:{{ $mColor }};transition:width 0.6s ease;"></div>
                                     </div>
@@ -206,7 +206,7 @@
                                     </div>
                                     <div style="background:var(--vh-surface-2);border-radius:6px;overflow:hidden;height:10px;">
                                         @php
-                                            $dColor = $node['disk_percent'] > 90 ? '#ff4757' : ($node['disk_percent'] > 70 ? '#ffa502' : '#2ed573');
+                                            $dColor = $node['disk_percent'] > 90 ? '#F0575D' : ($node['disk_percent'] > 70 ? '#E8A33D' : '#5B6570');
                                         @endphp
                                         <div style="height:100%;border-radius:6px;width:{{ $node['disk_percent'] }}%;background:{{ $dColor }};transition:width 0.6s ease;"></div>
                                     </div>
@@ -239,11 +239,11 @@
     function checkNodeDaemon(nodeId) {
         var badge = $('#health-badge-' + nodeId);
         var info = $('#daemon-info-' + nodeId);
-        badge.html('<i class="fa fa-spinner fa-spin"></i> Checking').css({'background':'rgba(108,92,231,0.2)','color':'var(--vh-accent)'});
+        badge.html('<i class="fa fa-spinner fa-spin"></i> Checking').css({'background':'rgba(91,101,112,0.2)','color':'var(--vh-accent)'});
 
         $.getJSON('/admin/health/check-node/' + nodeId, function(data) {
             if (data.online) {
-                badge.html('<i class="fa fa-circle"></i> Online').css({'background':'rgba(46,213,115,0.2)','color':'#2ed573'});
+                badge.html('<i class="fa fa-circle"></i> Online').css({'background':'rgba(62,207,142,0.2)','color':'#3ECF8E'});
                 info.show().html(
                     '<i class="fa fa-code-fork"></i> Wings ' + data.version +
                     ' &middot; <i class="fa fa-linux"></i> ' + data.os +
@@ -251,11 +251,11 @@
                     ' &middot; ' + data.cpu_count + ' CPUs'
                 );
             } else {
-                badge.html('<i class="fa fa-circle"></i> Offline').css({'background':'rgba(255,71,87,0.2)','color':'#ff4757'});
+                badge.html('<i class="fa fa-circle"></i> Offline').css({'background':'rgba(91,101,112,0.2)','color':'#5B6570'});
                 info.show().html('<i class="fa fa-exclamation-triangle"></i> ' + (data.error || 'Connection failed'));
             }
         }).fail(function() {
-            badge.html('<i class="fa fa-circle"></i> Error').css({'background':'rgba(255,71,87,0.2)','color':'#ff4757'});
+            badge.html('<i class="fa fa-circle"></i> Error').css({'background':'rgba(240,87,93,0.2)','color':'#F0575D'});
             info.show().html('<i class="fa fa-exclamation-triangle"></i> Failed to reach panel API');
         });
     }

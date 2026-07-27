@@ -1,24 +1,21 @@
-.badge {
+.icon {
     display: inline-flex;
+    width: 18px;
+    height: 18px;
+    flex: 0 0 18px;
     align-items: center;
-    gap: 0.4rem;
-    width: max-content;
-    margin-bottom: 0.55rem;
-    padding: 0.25rem 0.45rem;
-    color: var(--vh-ink-muted, #9b9c99);
-    background: var(--vh-surface-raised, #272a2e);
-    border: 1px solid var(--vh-keyline, #35383d);
-    border-radius: var(--vh-radius-control, 4px);
-    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-    font-size: 0.64rem;
-    font-weight: 600;
-    letter-spacing: 0.06em;
-    line-height: 1;
-    text-transform: uppercase;
+    justify-content: center;
 }
 
-.badge img {
-    width: 0.82rem;
-    height: 0.82rem;
-    filter: invert(92%) sepia(54%) saturate(795%) hue-rotate(24deg) brightness(110%);
+.mark {
+    display: block;
+    width: 18px;
+    height: 18px;
+    background: #8a93a0;
+    mask-position: center;
+    mask-repeat: no-repeat;
+    mask-size: contain;
+    -webkit-mask-position: center;
+    -webkit-mask-repeat: no-repeat;
+    -webkit-mask-size: contain;
 }

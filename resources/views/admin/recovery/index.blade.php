@@ -75,7 +75,7 @@
                 text: 'The backup will be unpacked over the current server files. The server will be unavailable until Wings completes the recovery.',
                 type: 'warning',
                 showCancelButton: true,
-                confirmButtonColor: '#4f8cff',
+                confirmButtonColor: '44f8cff',
                 confirmButtonText: 'Start recovery'
             }, function () { form.submit(); });
         });

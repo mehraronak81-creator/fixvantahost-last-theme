@@ -18,16 +18,15 @@
     @apply flex items-center cursor-pointer text-sm no-underline;
     min-height: 2.9rem;
     margin-top: -1px;
-    background: var(--vh-surface, #1d1f22);
-    border: 1px solid var(--vh-keyline, #35383d);
-    transition: background-color 0.12s ease, border-color 0.12s ease;
+    background: var(--vh-surface, #14171b);
+    border: 1px solid var(--vh-border, #262b31);
+    transition: background-color 120ms ease;
 
     &:hover {
-        color: var(--vh-ink, #f3f1ea);
-        background: var(--vh-surface-raised, #272a2e);
-        border-color: #4a4e54;
         position: relative;
         z-index: 1;
+        color: var(--vh-text, #e7e9ec);
+        background: var(--vh-elevated, #1b1f24);
     }
 
     & > .details {
@@ -44,10 +43,10 @@
     grid-template-columns: minmax(0, 1fr) 16.666% 20% 2.75rem;
     align-items: center;
     padding: 0.55rem 0.85rem 0.55rem 4.5rem;
-    color: var(--vh-ink-muted, #9b9c99);
-    background: #191a1c;
-    border: 1px solid var(--vh-keyline, #35383d);
-    border-radius: var(--vh-radius-card, 8px) var(--vh-radius-card, 8px) 0 0;
+    color: var(--vh-muted, #8a93a0);
+    background: var(--vh-elevated, #1b1f24);
+    border: 1px solid var(--vh-border, #262b31);
+    border-radius: var(--vh-radius-card, 10px) var(--vh-radius-card, 10px) 0 0;
     font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
     font-size: 0.66rem;
     font-weight: 600;

@@ -18,13 +18,13 @@ import {
 const levelColor = (level: Notification['level']): string => {
     switch (level) {
         case 'error':
-            return '#ef4444';
+            return '#f0575d';
         case 'success':
-            return '#22c55e';
+            return '#3ecf8e';
         case 'warning':
-            return '#eab308';
+            return '#e8a33d';
         default:
-            return 'var(--color-accent)';
+            return '#5b6570';
     }
 };
 
@@ -92,7 +92,7 @@ export default () => {
                                         {!n.readAt && (
                                             <span
                                                 css={tw`w-2 h-2 rounded-full mr-2`}
-                                                style={{ background: 'var(--color-accent)' }}
+                                                style={{ background: '#5b6570' }}
                                             />
                                         )}
                                         {n.title && <p css={tw`font-medium`}>{n.title}</p>}

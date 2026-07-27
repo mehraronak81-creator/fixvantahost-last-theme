@@ -3,7 +3,7 @@
     @apply text-sm font-semibold transition-colors duration-100;
     min-height: 2.5rem;
     border: 1px solid transparent;
-    border-radius: var(--vh-radius-control, 4px);
+    border-radius: var(--vh-radius-control, 6px);
     letter-spacing: 0.01em;
 
     /* Sizing Controls */
@@ -16,11 +16,7 @@
     }
 
     &.secondary {
-        @apply text-gray-50 bg-transparent;
-
-        &:disabled {
-            background: transparent !important;
-        }
+        @apply text-gray-50;
     }
 
     &:disabled {
@@ -37,19 +33,19 @@
 }
 
 .primary {
-    color: var(--vh-canvas, #141517);
-    background: var(--color-accent, #d6ff3f);
-    border-color: var(--color-accent, #d6ff3f);
+    color: var(--vh-text, #e7e9ec);
+    background: var(--vh-accent, #4f7cff);
+    border-color: var(--vh-accent, #4f7cff);
 
     &.secondary {
         color: var(--text-main);
-        background: var(--vh-surface-raised);
-        border-color: var(--color-border);
+        background: var(--vh-elevated, #1b1f24);
+        border-color: var(--vh-border, #262b31);
     }
 
     &:hover:not(:disabled) {
-        background: var(--color-accent-hover);
-        border-color: var(--color-accent-hover);
+        background: var(--vh-accent, #4f7cff);
+        border-color: var(--vh-accent, #4f7cff);
     }
 
     &:disabled {
@@ -58,28 +54,30 @@
 }
 
 .text {
-    color: var(--text-main);
-    background: var(--vh-surface-raised);
-    border-color: var(--color-border);
+    color: var(--vh-text, #e7e9ec);
+    background: var(--vh-elevated, #1b1f24);
+    border-color: var(--vh-border, #262b31);
 
     &.secondary {
-        background: transparent;
+        background: var(--vh-elevated, #1b1f24);
+        border-color: var(--vh-border, #262b31);
     }
 
     &:hover:not(:disabled) {
-        background: #303338;
-        border-color: #4a4e54;
+        background: var(--vh-elevated, #1b1f24);
+        border-color: var(--vh-border, #262b31);
     }
 }
 
 .danger {
-    color: #fff;
-    background: var(--color-danger, #ff6577);
-    border-color: var(--color-danger, #ff6577);
+    color: var(--vh-text, #e7e9ec);
+    background: var(--vh-error, #f0575d);
+    border-color: var(--vh-error, #f0575d);
 
     &.secondary {
         color: var(--color-danger);
-        background: transparent;
+        background: var(--vh-error);
+        border-color: var(--vh-error);
     }
 
     &:disabled {

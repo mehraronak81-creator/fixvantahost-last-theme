@@ -64,18 +64,18 @@
                 <div class="row">
                     @forelse($nodes as $node)
                     <div class="col-md-4 col-sm-6" style="margin-bottom:15px;">
-                        <div style="background:var(--vh-surface);border:1px solid {{ $node->maintenance_mode ? 'rgba(255,165,2,0.4)' : 'var(--vh-border)' }};border-radius:12px;padding:20px;">
+                        <div style="background:var(--vh-surface);border:1px solid var(--vh-border);border-radius:12px;padding:20px;">
                             <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;">
                                 <div>
                                     <strong style="color:var(--vh-text);font-size:15px;">{{ $node->name }}</strong>
                                     <div style="font-size:11px;color:var(--vh-text-muted);margin-top:2px;">{{ $node->fqdn }}</div>
                                 </div>
                                 @if($node->maintenance_mode)
-                                    <span style="padding:4px 10px;border-radius:6px;font-size:11px;font-weight:600;background:rgba(255,165,2,0.2);color:#ffa502;">
+                                    <span style="padding:4px 10px;border-radius:6px;font-size:11px;font-weight:600;background:rgba(232,163,61,0.2);color:#E8A33D;">
                                         <i class="fa fa-wrench"></i> Maintenance
                                     </span>
                                 @else
-                                    <span style="padding:4px 10px;border-radius:6px;font-size:11px;font-weight:600;background:rgba(46,213,115,0.2);color:#2ed573;">
+                                    <span style="padding:4px 10px;border-radius:6px;font-size:11px;font-weight:600;background:rgba(62,207,142,0.2);color:#3ECF8E;">
                                         <i class="fa fa-check-circle"></i> Active
                                     </span>
                                 @endif

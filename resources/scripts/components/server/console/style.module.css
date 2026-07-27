@@ -1,39 +1,32 @@
 .stat_block {
-    @apply flex items-center rounded-xl relative;
+    @apply flex items-center relative;
     @apply col-span-3 md:col-span-2 lg:col-span-6;
     @apply px-3 py-2 md:p-3 lg:p-4;
-    background: linear-gradient(145deg, var(--glass-surface, rgba(17, 24, 39, 0.76)), rgba(12, 18, 32, 0.9));
-    border: 1px solid rgba(130, 162, 216, 0.2);
-    box-shadow: var(--shadow-sm, 0 1px 3px rgba(0, 0, 0, 0.4));
-    transition: all 0.2s ease;
+    background: var(--vh-surface, #14171b);
+    border: 1px solid var(--vh-border, #262b31);
+    border-radius: var(--vh-radius-card, 10px);
+    box-shadow: var(--vh-shadow);
+    transition: background-color 120ms ease;
 
     &:hover {
-        border-color: var(--color-accent, #4f8cff);
-        box-shadow: var(--shadow-glow, 0 0 20px rgba(108, 92, 231, 0.3));
-        transform: translateY(-1px);
+        background: var(--vh-elevated, #1b1f24);
     }
 
     & > .status_bar {
-        @apply w-1 h-full absolute left-0 top-0 rounded-l-xl sm:hidden;
-        background: var(--color-accent, #4f8cff);
+        display: none;
     }
 
     & > .icon {
-        @apply hidden flex-shrink-0 items-center justify-center rounded-lg w-12 h-12;
-        @apply transition-all duration-300;
+        @apply hidden flex-shrink-0 items-center justify-center w-12 h-12;
         @apply sm:flex sm:mr-4;
-        background: var(--color-surface, #1e1e2a);
-        box-shadow: var(--shadow-sm, 0 1px 3px rgba(0, 0, 0, 0.3));
+        color: var(--vh-muted, #8a93a0);
+        background: var(--vh-elevated, #1b1f24);
+        border: 1px solid var(--vh-border, #262b31);
+        border-radius: var(--vh-radius-control, 6px);
 
         & > svg {
             @apply w-5 h-5 m-auto;
         }
-    }
-
-    &:hover > .icon {
-        background: var(--color-accent, #4f8cff);
-        color: white;
-        box-shadow: var(--shadow-glow, 0 0 20px rgba(108, 92, 231, 0.3));
     }
 }
 
@@ -51,11 +44,10 @@
 
     & > .container {
         @apply p-1 sm:p-2 min-h-[16rem] flex-1 font-mono text-sm;
-        background: #101113;
-        border: 1px solid var(--vh-keyline, #35383d);
-        border-top: 3px solid var(--vh-accent, #d6ff3f);
-        border-radius: var(--vh-radius-card, 8px) var(--vh-radius-card, 8px) 0 0;
+        background: var(--vh-base, #0b0d10);
+        border: 1px solid var(--vh-border, #262b31);
         border-bottom: none;
+        border-radius: var(--vh-radius-card, 10px) var(--vh-radius-card, 10px) 0 0;
 
         & #terminal {
             @apply h-full;
@@ -65,7 +57,7 @@
             }
 
             &::-webkit-scrollbar-thumb {
-                background: var(--scrollbar-thumb, #2a2a40);
+                background: var(--vh-offline, #5b6570);
                 border-radius: 3px;
             }
         }
@@ -73,28 +65,19 @@
 
     & .command_icon {
         @apply flex items-center top-0 left-0 absolute z-10 select-none h-full px-3;
-        color: var(--color-accent, #4f8cff);
-        transition: color 0.15s ease;
+        color: var(--vh-muted, #8a93a0);
     }
 
     & .command_input {
         @apply relative px-2 pl-10 pr-4 py-3 w-full font-mono text-sm;
-        @apply focus:ring-0 outline-none focus-visible:outline-none;
-        @apply border-0 border-b-2 border-transparent transition-all duration-200;
-        background: #191a1c;
-        color: var(--text-main, #f3f1ea);
-        border-left: 1px solid var(--color-border, #35383d);
-        border-right: 1px solid var(--color-border, #35383d);
-        border-bottom: 2px solid transparent;
-        border-radius: 0 0 var(--vh-radius-card, 8px) var(--vh-radius-card, 8px);
-
-        &:focus {
-            border-bottom-color: var(--color-accent, #4f8cff);
-            box-shadow: none;
-        }
+        @apply focus:ring-0;
+        color: var(--vh-text, #e7e9ec);
+        background: var(--vh-surface, #14171b);
+        border: 1px solid var(--vh-border, #262b31);
+        border-radius: 0 0 var(--vh-radius-card, 10px) var(--vh-radius-card, 10px);
 
         &::placeholder {
-            color: var(--text-muted, #555570);
+            color: var(--vh-muted, #8a93a0);
         }
     }
 }
@@ -102,22 +85,15 @@
 .chart_container {
     @apply relative overflow-hidden;
     min-height: 13rem;
-    background: var(--vh-surface, #1d1f22);
-    border: 1px solid var(--vh-keyline, #35383d);
-    border-top: 2px solid var(--vh-accent, #d6ff3f);
-    border-radius: var(--vh-radius-card, 8px);
-    box-shadow: var(--vh-shadow-1);
-    transition: border-color 0.15s ease;
-
-    &:hover {
-        border-color: #4a4e54;
-        border-top-color: var(--vh-accent, #d6ff3f);
-    }
+    background: var(--vh-surface, #14171b);
+    border: 1px solid var(--vh-border, #262b31);
+    border-radius: var(--vh-radius-card, 10px);
+    box-shadow: var(--vh-shadow);
 }
 
 .chart_eyebrow {
     margin-bottom: 2px;
-    color: var(--vh-ink-muted, #9b9c99);
+    color: var(--vh-muted, #8a93a0);
     font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
     font-size: 0.62rem;
     font-weight: 600;
@@ -134,12 +110,13 @@
 
 .chart_empty {
     position: absolute;
-    inset: 50% 0 auto 0;
-    color: var(--vh-ink-muted, #9b9c99);
+    right: 0;
+    bottom: 12px;
+    left: 0;
+    color: var(--vh-muted, #8a93a0);
     font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-    font-size: 0.68rem;
-    letter-spacing: 0.08em;
+    font-size: 0.66rem;
+    letter-spacing: 0.06em;
     text-align: center;
-    text-transform: uppercase;
     pointer-events: none;
 }

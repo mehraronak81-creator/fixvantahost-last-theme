@@ -31,11 +31,11 @@ const options: ChartOptions<'line'> = {
         title: { display: false },
         tooltip: {
             enabled: true,
-            backgroundColor: '#272a2e',
-            borderColor: '#4a4e54',
+            backgroundColor: '#1b1f24',
+            borderColor: '#262b31',
             borderWidth: 1,
-            titleColor: '#f3f1ea',
-            bodyColor: '#c7c6c0',
+            titleColor: '#e7e9ec',
+            bodyColor: '#8a93a0',
             padding: 10,
             displayColors: true,
             callbacks: {
@@ -55,13 +55,13 @@ const options: ChartOptions<'line'> = {
             type: 'linear',
             grid: {
                 display: true,
-                color: 'rgba(155, 156, 153, 0.16)',
+                color: 'rgba(138, 147, 160, 0.16)',
                 drawBorder: false,
             },
             ticks: {
                 display: true,
                 count: 3,
-                color: '#9b9c99',
+                color: '#8a93a0',
                 font: {
                     family: 'ui-monospace, SFMono-Regular, Menlo, Consolas, monospace',
                     size: 10,
@@ -76,7 +76,7 @@ const options: ChartOptions<'line'> = {
     },
 };
 
-function createChartFill(top: string, bottom = 'rgba(214, 255, 63, 0)') {
+function createChartFill(top: string, bottom = 'rgba(79, 124, 255, 0)') {
     return (context: ScriptableContext<'line'>): string | CanvasGradient => {
         const chart = context.chart;
         const area = chart.chartArea;
@@ -107,8 +107,8 @@ function getEmptyData(label: string, sets = 1, callback?: ChartDatasetCallback |
                         fill: 'origin',
                         label,
                         data: Array(20).fill(0),
-                        borderColor: '#d6ff3f',
-                        backgroundColor: createChartFill('rgba(214, 255, 63, 0.24)'),
+                        borderColor: '#4f7cff',
+                        backgroundColor: createChartFill('rgba(79, 124, 255, 0.22)'),
                     },
                     index
                 )

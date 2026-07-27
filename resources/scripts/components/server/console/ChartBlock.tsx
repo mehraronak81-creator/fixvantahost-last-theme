@@ -33,7 +33,7 @@ export default ({ title, legend, children }: ChartBlockProps) => {
             </header>
             <div className={styles.chart_plot}>
                 {children}
-                {isEmpty && <span className={styles.chart_empty}>Awaiting live samples</span>}
+                {isEmpty && <span className={styles.chart_empty}>No telemetry yet</span>}
             </div>
         </section>
     );

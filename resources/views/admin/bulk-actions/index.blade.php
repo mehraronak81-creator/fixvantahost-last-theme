@@ -204,7 +204,7 @@
             text: 'Are you sure you want to ' + actionNames[action] + ' ' + selected.length + ' server(s)? This action may not be easily reversible.',
             type: 'warning',
             showCancelButton: true,
-            confirmButtonColor: '#d9534f',
+            confirmButtonColor: '#F0575D',
             confirmButtonText: 'Yes, execute!',
             closeOnConfirm: false
         }, function() {

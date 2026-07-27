@@ -66,7 +66,7 @@
             text: 'Are you sure that you want to delete this server? There is no going back, all data will immediately be removed.',
             showCancelButton: true,
             confirmButtonText: 'Delete',
-            confirmButtonColor: '#d9534f',
+            confirmButtonColor: '#F0575D',
             closeOnConfirm: false
         }, function () {
             $('#deleteform').submit()
@@ -81,7 +81,7 @@
             text: 'Are you sure that you want to delete this server? There is no going back, all data will immediately be removed.',
             showCancelButton: true,
             confirmButtonText: 'Delete',
-            confirmButtonColor: '#d9534f',
+            confirmButtonColor: '#F0575D',
             closeOnConfirm: false
         }, function () {
             $('#forcedeleteform').submit()

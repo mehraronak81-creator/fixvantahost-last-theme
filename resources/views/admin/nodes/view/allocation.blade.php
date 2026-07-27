@@ -40,7 +40,7 @@
                         <th>
                             <input type="checkbox" class="select-all-files hidden-xs" data-action="selectAll">
                         </th>
-                        <th>IP Address <i class="fa fa-fw fa-minus-square" style="font-weight:normal;color:#d9534f;cursor:pointer;" data-toggle="modal" data-target="#allocationModal"></i></th>
+                        <th>IP Address <i class="fa fa-fw fa-minus-square" style="font-weight:normal;color:#F0575D;cursor:pointer;" data-toggle="modal" data-target="#allocationModal"></i></th>
                         <th>IP Alias</th>
                         <th>Port</th>
                         <th>Assigned To</th>
@@ -206,7 +206,7 @@
             allowOutsideClick: true,
             closeOnConfirm: false,
             confirmButtonText: 'Delete',
-            confirmButtonColor: '#d9534f',
+            confirmButtonColor: '#F0575D',
             showLoaderOnConfirm: true
         }, function () {
             $.ajax({

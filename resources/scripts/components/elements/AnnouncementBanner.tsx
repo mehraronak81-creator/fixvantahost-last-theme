@@ -7,18 +7,10 @@ import { ApplicationStore } from '@/state';
 import { usePersistedState } from '@/plugins/usePersistedState';
 import { Announcement, getAnnouncements } from '@/api/account/announcements';
 
-const levelStyle = (level: Announcement['level']): { background: string; border: string } => {
-    switch (level) {
-        case 'error':
-            return { background: '#7f1d1d', border: '#991b1b' };
-        case 'success':
-            return { background: '#14532d', border: '#166534' };
-        case 'warning':
-            return { background: '#78350f', border: '#92400e' };
-        default:
-            return { background: 'var(--color-surface)', border: 'var(--color-border)' };
-    }
-};
+const levelStyle = (_level: Announcement['level']): { background: string; border: string } => ({
+    background: '#14171B',
+    border: '#262B31',
+});
 
 export default () => {
     const uuid = useStoreState((state: ApplicationStore) => state.user.data?.uuid);

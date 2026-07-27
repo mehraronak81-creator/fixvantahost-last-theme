@@ -1,61 +1,52 @@
-const colors = require('tailwindcss/colors');
+const lockedScale = (value) => ({
+    50: value,
+    100: value,
+    200: value,
+    300: value,
+    400: value,
+    500: value,
+    600: value,
+    700: value,
+    800: value,
+    900: value,
+});
 
-const gray = {
-    50: colors.neutral[50],
-    100: colors.neutral[100],
-    200: colors.neutral[200],
-    300: colors.neutral[300],
-    400: colors.neutral[400],
-    500: colors.neutral[500],
-    600: colors.neutral[600],
-    700: colors.neutral[700],
-    800: colors.neutral[800],
-    900: colors.neutral[900],
+const neutral = {
+    50: '#E7E9EC',
+    100: '#E7E9EC',
+    200: '#E7E9EC',
+    300: '#8A93A0',
+    400: '#8A93A0',
+    500: '#5B6570',
+    600: '#262B31',
+    700: '#1B1F24',
+    800: '#14171B',
+    900: '#0B0D10',
 };
 
 module.exports = {
-    content: [
-        './resources/scripts/**/*.{js,ts,tsx}',
-    ],
+    content: ['./resources/scripts/**/*.{js,ts,tsx}'],
     theme: {
+        colors: {
+            inherit: 'inherit',
+            current: 'currentColor',
+            transparent: 'transparent',
+            black: '#0B0D10',
+            white: '#E7E9EC',
+            gray: neutral,
+            neutral,
+            primary: lockedScale('#5B6570'),
+            blue: lockedScale('#5B6570'),
+            cyan: lockedScale('#5B6570'),
+            orange: lockedScale('#8A93A0'),
+            red: lockedScale('#F0575D'),
+            green: lockedScale('#3ECF8E'),
+            yellow: lockedScale('#E8A33D'),
+            accent: lockedScale('#4F7CFF'),
+        },
         extend: {
             fontFamily: {
-                header: ['"IBM Plex Sans"', '"Roboto"', 'system-ui', 'sans-serif'],
-            },
-            colors: {
-                black: '#0a0a12',
-                // "primary" and "neutral" are deprecated, prefer the use of "blue" and "gray"
-                // in new code.
-                primary: colors.blue,
-                orange: colors.orange,
-                gray: gray,
-                neutral: gray,
-                cyan: colors.cyan,
-                neutral: {
-                    50: colors.neutral[50],
-                    100: colors.neutral[100],
-                    200: colors.neutral[200],
-                    300: colors.neutral[300],
-                    400: colors.neutral[400],
-                    500: colors.neutral[500],
-                    600: colors.neutral[600],
-                    700: '#17171B',
-                    800: '#12121a',
-                    900: '#0a0a12',
-                },
-                accent: {
-                    DEFAULT: '#4f8cff',
-                    50: '#eff6ff',
-                    100: '#dbeafe',
-                    200: '#bfdbfe',
-                    300: '#93c5fd',
-                    400: '#76a7ff',
-                    500: '#4f8cff',
-                    600: '#3575e8',
-                    700: '#285ec2',
-                    800: '#234b9b',
-                    900: '#203f7c',
-                },
+                header: ['IBM Plex Sans', 'system-ui', 'sans-serif'],
             },
             fontSize: {
                 '2xs': '0.625rem',
@@ -63,12 +54,12 @@ module.exports = {
             transitionDuration: {
                 250: '250ms',
             },
-            borderColor: theme => ({
-                default: theme('colors.neutral.400', 'currentColor'),
+            borderColor: (theme) => ({
+                default: theme('colors.neutral.600', 'currentColor'),
             }),
             borderRadius: {
-                'xl': '12px',
-                '2xl': '16px',
+                xl: '10px',
+                '2xl': '10px',
             },
         },
     },
@@ -77,5 +68,5 @@ module.exports = {
         require('@tailwindcss/forms')({
             strategy: 'class',
         }),
-    ]
+    ],
 };

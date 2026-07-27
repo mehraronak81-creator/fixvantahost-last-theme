@@ -42,10 +42,10 @@ export default () => {
             return {
                 ...opts,
                 label: !index ? 'Network In' : 'Network Out',
-                borderColor: !index ? '#f4b860' : '#ff6577',
+                borderColor: !index ? '#4f7cff' : '#8a93a0',
                 backgroundColor: !index
-                    ? createChartFill('rgba(244, 184, 96, 0.22)')
-                    : createChartFill('rgba(255, 101, 119, 0.2)'),
+                    ? createChartFill('rgba(79, 124, 255, 0.22)')
+                    : createChartFill('rgba(138, 147, 160, 0.14)', 'rgba(138, 147, 160, 0)'),
             };
         },
     });
@@ -88,10 +88,10 @@ export default () => {
                 legend={
                     <>
                         <Tooltip arrow content={'Inbound'}>
-                            <CloudDownloadIcon className={'mr-2 w-4 h-4 text-orange-400'} />
+                            <CloudDownloadIcon className={'mr-2 w-4 h-4'} style={{ color: '#4f7cff' }} />
                         </Tooltip>
                         <Tooltip arrow content={'Outbound'}>
-                            <CloudUploadIcon className={'w-4 h-4 text-red-400'} />
+                            <CloudUploadIcon className={'w-4 h-4'} style={{ color: '#8a93a0' }} />
                         </Tooltip>
                     </>
                 }
